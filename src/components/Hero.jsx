@@ -430,7 +430,7 @@ const Hero = () => {
                 <div style={{
                   width: isDesktop ? '220px' : isTablet ? '180px' : '160px',
                   height: isDesktop ? '220px' : isTablet ? '180px' : '160px',
-                  backgroundImage: 'url(/assets/perfil.jpg)',
+                  backgroundImage: 'url(https://raw.githubusercontent.com/fmateo2023/MyPage/refs/heads/main/assets/perfil.jpg)',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   borderRadius: '50%',
