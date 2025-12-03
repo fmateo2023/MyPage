@@ -26,7 +26,7 @@ const Participations = () => {
       description: "Conferencia magistral sobre las aplicaciones prácticas de la Inteligencia Artificial en el desarrollo de software y su impacto en la industria tecnológica. Presentación dirigida a estudiantes y profesores sobre el futuro de la IA.",
       type: "Conferencia",
       color: "#0077FF",
-      image: "/assets/cbtis-ia.jpeg",
+      image: "./assets/cbtis-ia.jpeg",
       audience: "150+ estudiantes y profesores",
       topics: ["Inteligencia Artificial", "Machine Learning", "Desarrollo de Software", "Futuro Tecnológico"]
     },
@@ -40,7 +40,7 @@ const Participations = () => {
       description: "Evaluación de proyectos tecnológicos estudiantiles, asesoría en desarrollo de software y mentoría para jóvenes desarrolladores. Participación en concursos de innovación tecnológica.",
       type: "Evaluación",
       color: "#2BBEF8",
-      image: "/assets/cbtis-ia2.jpeg",
+      image: "./assets/cbtis-ia2.jpeg",
       audience: "50+ proyectos evaluados",
       topics: ["Evaluación de Proyectos", "Mentoría", "Innovación", "Desarrollo Estudiantil"]
     },
@@ -54,7 +54,7 @@ const Participations = () => {
       description: "Presentación sobre soluciones tecnológicas para la industria energética y portuaria, enfocándose en automatización y digitalización de procesos industriales.",
       type: "Foro Industrial",
       color: "#0077FF",
-      image: "/assets/foro-industrial-portuario.jpg",
+      image: "./assets/foro-industrial-portuario.jpg",
       audience: "200+ empresarios del sector",
       topics: ["Automatización Industrial", "Digitalización", "Industria 4.0", "Soluciones IoT"]
     },
@@ -68,7 +68,7 @@ const Participations = () => {
       description: "Participación en mesas de trabajo sobre transformación digital empresarial y desarrollo de soluciones tecnológicas para la industria local. Colaboración en iniciativas de digitalización.",
       type: "Participación",
       color: "#2BBEF8",
-      image: "/assets/foro-industrial-portuario-cd-carmen.jpg",
+      image: "./assets/foro-industrial-portuario-cd-carmen.jpg",
       audience: "Empresarios regionales",
       topics: ["Transformación Digital", "Industria Local", "Digitalización", "Consultoría"]
     },
@@ -82,7 +82,7 @@ const Participations = () => {
       description: "Presentación de soluciones tecnológicas innovadoras para empresas, showcasing de proyectos desarrollados y networking con empresarios del Bajío mexicano.",
       type: "Exposición",
       color: "#0077FF",
-      image: "/assets/idea-guanajuato.jpg",
+      image: "./assets/idea-guanajuato.jpg",
       audience: "300+ asistentes",
       topics: ["Innovación Tecnológica", "Startups", "Networking", "Soluciones Empresariales"]
     }
