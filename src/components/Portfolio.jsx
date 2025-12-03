@@ -93,7 +93,7 @@ const Portfolio = () => {
       tech: ["React", "Vite", "CSS3", "JavaScript"],
       category: "Sitio Web Personal",
       client: "Proyecto Personal",
-      image: "./assets/myweb1.png",
+      image: "/assets/myweb1.png",
       color: "#0077FF"
     },
     {
@@ -104,7 +104,7 @@ const Portfolio = () => {
       tech: ["React", "Framer Motion", "React Router", "CSS Variables"],
       category: "Sitio Web Personal",
       client: "Proyecto Personal",
-      image: "./assets/myweb2.png",
+      image: "/assets/myweb2.png",
       color: "#2BBEF8"
     }
   ]

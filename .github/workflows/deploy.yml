@@ -33,13 +33,20 @@ jobs:
       - name: Build
         run: npm run build
         
+      - name: List build contents
+        run: |
+          echo "Listing dist directory:"
+          ls -la dist/
+          echo "Listing assets directory:"
+          ls -la dist/assets/
+        
       - name: Setup Pages
         uses: actions/configure-pages@v4
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: 'dist'
 
   deploy:
     environment:
