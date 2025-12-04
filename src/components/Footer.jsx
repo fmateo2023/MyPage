@@ -121,7 +121,7 @@ const Footer = () => {
                   fontSize: '0.9rem',
                   fontFamily: 'var(--font-mono)'
                 }}>
-                  Full-Stack Developer
+                  Líder del área de TI
                 </p>
               </div>
             </div>

@@ -106,18 +106,19 @@ const Hero = () => {
               borderRadius: '50px',
               padding: isTablet ? '0.75rem 1.5rem' : '0.5rem 1rem',
               marginBottom: '2rem',
+              marginTop: '1rem',
               backdropFilter: 'blur(10px)',
               animation: 'pulse 2s ease-in-out infinite'
             }}>
               <div style={{
                 width: '8px',
                 height: '8px',
-                background: '#2BBEF8',
+                background: '#22C55E',
                 borderRadius: '50%',
-                boxShadow: '0 0 10px #2BBEF8'
+                boxShadow: '0 0 10px #22C55E, 0 0 20px rgba(34, 197, 94, 0.3)'
               }} />
               <span style={{
-                color: '#2BBEF8',
+                color: '#6B7280',
                 fontSize: isTablet ? '0.9rem' : '0.8rem',
                 fontWeight: '500',
                 fontFamily: 'IBM Plex Mono, monospace'
@@ -156,7 +157,7 @@ const Hero = () => {
               maxWidth: isDesktop ? '600px' : '100%',
               margin: isDesktop ? '0 0 2.5rem 0' : '0 auto 2.5rem auto'
             }}>
-              Desarrollador Full-Stack especializado en crear{' '}
+              Líder en el área de tecnología y desarrollo de software especializado en crear{' '}
               <span style={{ color: '#2BBEF8', fontWeight: '600' }}>APIs robustas</span>,{' '}
               <span style={{ color: '#2BBEF8', fontWeight: '600' }}>integraciones complejas</span> y{' '}
               <span style={{ color: '#2BBEF8', fontWeight: '600' }}>plataformas escalables</span>{' '}
