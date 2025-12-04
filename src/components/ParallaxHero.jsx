@@ -214,7 +214,7 @@ const ParallaxHero = () => {
             >
               <div className={styles.profileImage}>
                 <img
-                  src="https://raw.githubusercontent.com/fmateo2023/MyPage/refs/heads/main/assets/perfil.jpg"
+                  src="https://raw.githubusercontent.com/fmateo2023/MyPage/refs/heads/main/public/assets/perfil.jpg"
                   alt="Francisco Javier Mateo"
                   loading="lazy"
                 />
