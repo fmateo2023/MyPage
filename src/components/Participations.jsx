@@ -54,7 +54,7 @@ const Participations = () => {
       color: "#0077FF",
       audience: "200+ estudiantes y profesores",
       topics: ["Inteligencia Artificial", "Machine Learning", "Desarrollo de Software", "Innovación Tecnológica"],
-      image: "/MyPage/assets/cbtis-ia.jpeg",
+      image: "/MyPage/public/assets/cbtis-ia.jpeg",
       imageAlt: "Conferencia de IA en CBTIS Poza Rica"
     },
     {
@@ -68,7 +68,7 @@ const Participations = () => {
       color: "#2BBEF8",
       audience: "50+ participantes",
       topics: ["Evaluación Técnica", "Desarrollo de Software", "Innovación", "Mentoría"],
-      image: "/MyPage/assets/cbtis-ia2.jpeg",
+      image: "/MyPage/public/assets/cbtis-ia2.jpeg",
       imageAlt: "Jurado en competencia tecnológica CONALEP"
     },
     {
@@ -82,7 +82,7 @@ const Participations = () => {
       color: "#0077FF",
       audience: "300+ profesionales de la industria",
       topics: ["Industria 4.0", "Automatización", "Soluciones Empresariales", "Digitalización"],
-      image: "/MyPage/assets/foro-industrial-portuario-cd-carmen.jpg",
+      image: "/MyPage/public/assets/foro-industrial-portuario-cd-carmen.jpg",
       imageAlt: "Foro Industrial Portuario Ciudad del Carmen"
     },
     {
@@ -96,7 +96,7 @@ const Participations = () => {
       color: "#2BBEF8",
       audience: "500+ empresarios",
       topics: ["Transformación Digital", "Industria", "Tecnología Empresarial", "Innovación"],
-      image: "/MyPage/assets/foro-industrial-portuario.jpg",
+      image: "/MyPage/public/assets/foro-industrial-portuario.jpg",
       imageAlt: "Eventos CANACINTRA"
     },
     {
@@ -110,7 +110,7 @@ const Participations = () => {
       color: "#0077FF",
       audience: "1000+ visitantes",
       topics: ["PyMEs", "Soluciones Tecnológicas", "Casos de Éxito", "Automatización"],
-      image: "/MyPage/assets/idea-guanajuato.jpg",
+      image: "/MyPage/public/assets/idea-guanajuato.jpg",
       imageAlt: "Expo León Guanajuato"
     }
   ]

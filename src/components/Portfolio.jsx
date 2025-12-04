@@ -93,7 +93,7 @@ const Portfolio = () => {
       tech: ["React", "Vite", "CSS3", "JavaScript"],
       category: "Sitio Web Personal",
       client: "Proyecto Personal",
-      image: "https://raw.githubusercontent.com/fmateo2023/MyPage/refs/heads/main/assets/myweb1.png",
+      image: "https://raw.githubusercontent.com/fmateo2023/MyPage/refs/heads/main/public/assets/myweb1.png",
       color: "#0077FF"
     },
     {
@@ -104,7 +104,7 @@ const Portfolio = () => {
       tech: ["React", "Framer Motion", "React Router", "CSS Variables"],
       category: "Sitio Web Personal",
       client: "Proyecto Personal",
-      image: "https://raw.githubusercontent.com/fmateo2023/MyPage/refs/heads/main/assets/myweb2.png",
+      image: "https://raw.githubusercontent.com/fmateo2023/MyPage/refs/heads/main/public/assets/myweb2.png",
       color: "#2BBEF8"
     }
   ]
