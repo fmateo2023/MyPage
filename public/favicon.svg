@@ -1,0 +1,20 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e6e6e6;stop-opacity:1" />
+    </linearGradient>
+    <filter id="bevel" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="2" dy="2" result="offset1"/>
+      <feOffset dx="-2" dy="-2" result="offset2"/>
+      <feMerge> 
+        <feMergeNode in="offset1"/>
+        <feMergeNode in="offset2"/>
+        <feMergeNode in="SourceGraphic"/> 
+      </feMerge>
+    </filter>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#bg)" stroke="#0077FF" stroke-width="2" stroke-opacity="0.3" filter="url(#bevel)"/>
+  <text x="32" y="38" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#0077FF" text-anchor="middle">FJMH</text>
+</svg>
