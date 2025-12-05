@@ -1,0 +1,19 @@
+{
+  "name": "Francisco Javier Mateo Hernández - Desarrollador Full-Stack",
+  "short_name": "FJMH Portfolio",
+  "description": "Líder en TI y Desarrollador Full-Stack especializado en soluciones empresariales",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#0077FF",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "es-MX",
+  "orientation": "portrait-primary"
+}
