@@ -13,23 +13,15 @@ import {
 } from 'lucide-react'
 
 const About = () => {
-  const [particles, setParticles] = useState([])
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    const generateParticles = () => {
-      const newParticles = []
-      for (let i = 0; i < 20; i++) {
-        newParticles.push({
-          id: i,
-          x: Math.random() * 100,
-          y: Math.random() * 100,
-          size: Math.random() * 4 + 2,
-          duration: Math.random() * 20 + 10
-        })
-      }
-      setParticles(newParticles)
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
     }
-    generateParticles()
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   const highlights = [
@@ -84,74 +76,51 @@ const About = () => {
 
   return (
     <section id="about" style={{
-      minHeight: '100vh',
+      minHeight: 'auto',
       display: 'flex',
       alignItems: 'center',
-      background: 'linear-gradient(135deg, #0A1A2F 0%, #1a2332 50%, #0A1A2F 100%)',
+      background: 'linear-gradient(145deg, #f8f9fa 0%, #ffffff 50%, #f0f4f8 100%)',
       position: 'relative',
       overflow: 'hidden',
-      padding: '6rem 0'
+      padding: 'clamp(2rem, 5vw, 6rem) clamp(1rem, 3vw, 2rem)'
     }}>
-      {/* Geometric Background */}
+      {/* Tech Pattern Background */}
       <div style={{
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        inset: 0,
         backgroundImage: `
-          linear-gradient(45deg, transparent 40%, rgba(0, 119, 255, 0.03) 50%, transparent 60%),
-          linear-gradient(-45deg, transparent 40%, rgba(43, 190, 248, 0.03) 50%, transparent 60%),
-          radial-gradient(circle at 25% 25%, rgba(0, 119, 255, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 75% 75%, rgba(43, 190, 248, 0.1) 0%, transparent 50%)
+          radial-gradient(circle at 20% 30%, rgba(0, 170, 255, 0.03) 0%, transparent 50%),
+          radial-gradient(circle at 80% 70%, rgba(0, 102, 204, 0.03) 0%, transparent 50%)
         `,
+        opacity: 0.6,
         pointerEvents: 'none'
       }} />
-
-      {/* Floating Particles */}
-      {particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          style={{
-            position: 'absolute',
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            width: `${particle.size}px`,
-            height: `${particle.size}px`,
-            background: 'rgba(43, 190, 248, 0.6)',
-            borderRadius: '50%',
-            pointerEvents: 'none'
-          }}
-          animate={{
-            y: [-20, 20, -20],
-            opacity: [0.3, 1, 0.3],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{
-            duration: particle.duration,
-            repeat: Infinity,
-            ease: 'easeInOut'
-          }}
-        />
-      ))}
-
-      {/* Grid Pattern */}
+      
       <div style={{
         position: 'absolute',
+        width: '100%',
+        height: '100%',
         top: 0,
         left: 0,
-        right: 0,
-        bottom: 0,
         backgroundImage: `
-          linear-gradient(rgba(43, 190, 248, 0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(43, 190, 248, 0.1) 1px, transparent 1px)
+          linear-gradient(90deg, transparent 99%, rgba(0, 170, 255, 0.1) 100%),
+          linear-gradient(0deg, transparent 99%, rgba(0, 170, 255, 0.1) 100%)
         `,
         backgroundSize: '50px 50px',
         opacity: 0.3,
         pointerEvents: 'none'
       }} />
 
-      <div className="container" style={{ position: 'relative', zIndex: 10, textAlign: 'center' }}>
+      <div className="container" style={{ 
+        position: 'relative', 
+        zIndex: 10, 
+        textAlign: 'center',
+        width: '100%',
+        maxWidth: isMobile ? '100vw' : '1200px',
+        padding: isMobile ? '0 1rem' : '0 2rem',
+        margin: '0 auto',
+        overflow: 'hidden'
+      }}>
         {/* Hero Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -167,20 +136,41 @@ const About = () => {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.75rem',
-              background: 'rgba(43, 190, 248, 0.15)',
-              border: '1px solid rgba(43, 190, 248, 0.3)',
+              background: 'linear-gradient(145deg, rgba(0, 102, 204, 0.1), rgba(0, 153, 255, 0.05))',
+              border: '1px solid rgba(0, 102, 204, 0.3)',
               borderRadius: '50px',
-              padding: '1rem 2rem',
-              marginBottom: '3rem',
-              color: '#2BBEF8',
-              fontSize: '1rem',
+              padding: 'clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem)',
+              marginBottom: 'clamp(1.5rem, 4vw, 2rem)',
+              color: '#0066cc',
+              fontSize: 'clamp(0.75rem, 2vw, 0.875rem)',
               fontWeight: '600',
-              fontFamily: 'var(--font-mono)',
-              backdropFilter: 'blur(10px)'
+              fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+              backdropFilter: 'blur(12px)',
+              boxShadow: '0 4px 20px rgba(0, 102, 204, 0.15)',
+              position: 'relative',
+              overflow: 'hidden'
             }}
           >
-            <Sparkles size={24} />
-            SOBRE MÍ
+            <motion.div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: '-100%',
+                width: '60%',
+                height: '100%',
+                background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)'
+              }}
+              animate={{
+                left: ['-100%', '100%', '100%']
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            />
+            <Sparkles size={isMobile ? 18 : 20} style={{ filter: 'drop-shadow(0 0 2px rgba(0, 170, 255, 0.5))' }} />
+            <span style={{ position: 'relative', zIndex: 2 }}>SOBRE MÍ</span>
           </motion.div>
 
           <motion.h1
@@ -188,22 +178,34 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             style={{
-              fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+              fontSize: 'clamp(2rem, 5vw, 4.5rem)',
               fontWeight: '800',
               marginBottom: '2rem',
-              color: 'white',
-              fontFamily: 'var(--font-primary)',
-              lineHeight: '1.1'
+              color: '#1D1D1F',
+              fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+              lineHeight: '1.1',
+              letterSpacing: '-0.02em'
             }}
           >
             Transformando ideas en{' '}
             <span style={{
-              background: 'linear-gradient(135deg, #0077FF, #2BBEF8)',
+              background: 'linear-gradient(90deg, #0055aa 0%, #0088ee 25%, #00aaff 50%, #0088ee 75%, #0055aa 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              display: 'inline-block'
+              display: 'inline-block',
+              position: 'relative',
+              textShadow: '0 0 30px rgba(0, 170, 255, 0.3)'
             }}>
               soluciones digitales
+              <span style={{
+                position: 'absolute',
+                bottom: '-5px',
+                left: 0,
+                width: '100%',
+                height: '2px',
+                background: 'linear-gradient(90deg, transparent, #00aaff, transparent)',
+                borderRadius: '2px'
+              }} />
             </span>
           </motion.h1>
 
@@ -212,22 +214,30 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             style={{
-              fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
-              color: 'rgba(255, 255, 255, 0.8)',
+              fontSize: 'clamp(1rem, 3vw, 1.4rem)',
+              color: '#6E6E73',
               maxWidth: '800px',
               margin: '0 auto 3rem auto',
-              lineHeight: '1.6'
+              lineHeight: '1.6',
+              padding: '0 clamp(1rem, 3vw, 2rem)'
             }}
           >
-            Líder en el área de tecnología y desarrollo de software con 9+ años creando experiencias digitales excepcionales
-            que impulsan el crecimiento empresarial
+            Líder en el área de tecnología y desarrollo de software con 9+ años creando experiencias digitales excepcionales que impulsan el crecimiento empresarial
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}
+            style={{ 
+              display: 'flex', 
+              flexDirection: isMobile ? 'column' : 'row',
+              gap: '1rem', 
+              justifyContent: 'center', 
+              alignItems: 'center',
+              maxWidth: isMobile ? '320px' : '100%',
+              margin: '0 auto'
+            }}
           >
             <motion.a
               href="#contact"
@@ -236,20 +246,42 @@ const About = () => {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
+                justifyContent: 'center',
                 gap: '0.75rem',
-                padding: '1.25rem 2.5rem',
-                background: 'linear-gradient(135deg, #0077FF, #2BBEF8)',
+                padding: '1rem 2rem',
+                background: 'linear-gradient(135deg, #0066cc, #0099ff)',
                 color: 'white',
                 textDecoration: 'none',
-                borderRadius: '15px',
+                borderRadius: '50px',
                 fontWeight: '600',
-                fontSize: '1.1rem',
-                boxShadow: '0 15px 35px rgba(0, 119, 255, 0.3)',
-                transition: 'all 0.3s ease'
+                fontSize: '1rem',
+                width: isMobile ? '100%' : 'auto',
+                maxWidth: '300px',
+                minHeight: '56px',
+                border: 'none',
+                position: 'relative',
+                overflow: 'hidden',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 10px 30px rgba(0, 102, 204, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)'
               }}
             >
-              <ArrowRight size={20} />
-              Trabajemos Juntos
+              <motion.div
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: '-100%',
+                  width: '60%',
+                  height: '100%',
+                  background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)',
+                  transform: 'skewX(-20deg)'
+                }}
+                whileHover={{
+                  left: '100%',
+                  transition: { duration: 0.5 }
+                }}
+              />
+              <ArrowRight size={20} style={{ filter: 'drop-shadow(0 0 3px rgba(255, 255, 255, 0.5))' }} />
+              <span style={{ position: 'relative', zIndex: 2 }}>Trabajemos Juntos</span>
             </motion.a>
             
             <motion.a
@@ -259,17 +291,20 @@ const About = () => {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
+                justifyContent: 'center',
                 gap: '0.75rem',
-                padding: '1.25rem 2.5rem',
-                background: 'rgba(255, 255, 255, 0.1)',
-                color: 'white',
+                padding: '1rem 2rem',
+                background: 'transparent',
+                color: '#0071E3',
                 textDecoration: 'none',
-                borderRadius: '15px',
+                borderRadius: '980px',
                 fontWeight: '600',
-                fontSize: '1.1rem',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                backdropFilter: 'blur(10px)',
-                transition: 'all 0.3s ease'
+                fontSize: '1rem',
+                border: '1px solid #E5E5EA',
+                transition: 'all 0.3s ease',
+                width: isMobile ? '100%' : 'auto',
+                maxWidth: '300px',
+                minHeight: '56px'
               }}
             >
               Ver Proyectos
@@ -277,74 +312,77 @@ const About = () => {
           </motion.div>
         </motion.div>
 
-        {/* Highlights Grid */}
+        {/* Stats Grid - Responsive */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
-          style={{ marginBottom: '6rem' }}
+          style={{ marginBottom: '4rem' }}
         >
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '2rem',
-            maxWidth: '1000px',
-            margin: '0 auto'
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: isMobile ? '1rem' : '1.5rem',
+            margin: '0 auto',
+            maxWidth: isMobile ? '100%' : '1000px',
+            width: '100%'
           }}>
             {highlights.map((highlight, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: 1.2 + (0.1 * index) }}
-                whileHover={{ 
-                  y: -10, 
-                  scale: 1.05,
-                  boxShadow: '0 25px 50px rgba(0, 119, 255, 0.2)'
-                }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8, scale: 1.02 }}
                 style={{
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  borderRadius: '2rem',
-                  padding: '2.5rem 2rem',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  background: index === 0 
+                    ? 'rgba(255, 255, 255, 0.95)' 
+                    : 'rgba(255, 255, 255, 0.9)',
+                  backdropFilter: 'blur(20px)',
+                  borderRadius: isMobile ? '16px' : '24px',
+                  padding: isMobile ? '1.5rem' : '2rem',
+                  border: index === 0 
+                    ? `2px solid ${highlight.color}40` 
+                    : '1px solid #E5E5EA',
                   textAlign: 'center',
-                  transition: 'all 0.4s ease',
-                  cursor: 'pointer',
-                  backdropFilter: 'blur(10px)'
+                  boxShadow: index === 0 
+                    ? `0 10px 30px ${highlight.color}20` 
+                    : '0 8px 20px rgba(0, 0, 0, 0.04)',
+                  transition: 'all 0.3s ease',
+                  width: '100%',
+                  maxWidth: '100%',
+                  overflow: 'hidden'
                 }}
               >
-                <motion.div 
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                  style={{
-                    width: '80px',
-                    height: '80px',
-                    background: `linear-gradient(135deg, ${highlight.color}20, ${highlight.color}40)`,
-                    borderRadius: '25px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: highlight.color,
-                    margin: '0 auto 2rem auto',
-                    border: `2px solid ${highlight.color}30`
-                  }}
-                >
+                <div style={{
+                  width: '80px',
+                  height: '80px',
+                  background: `linear-gradient(135deg, ${highlight.color}19, ${highlight.color}31)`,
+                  borderRadius: '24px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: highlight.color,
+                  margin: '0 auto 1.5rem auto',
+                  border: `3px solid ${highlight.color}31`
+                }}>
                   {highlight.icon}
-                </motion.div>
+                </div>
                 <h4 style={{
-                  fontSize: '1.8rem',
+                  fontSize: 'clamp(1.8rem, 4vw, 2rem)',
                   fontWeight: '700',
-                  color: 'white',
-                  marginBottom: '0.75rem',
-                  fontFamily: 'var(--font-primary)'
+                  marginBottom: '0.5rem',
+                  color: '#1D1D1F',
+                  fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
                 }}>
                   {highlight.title}
                 </h4>
                 <p style={{
-                  fontSize: '1rem',
-                  color: 'rgba(255, 255, 255, 0.7)',
+                  fontSize: 'clamp(0.9rem, 2vw, 1rem)',
                   margin: 0,
-                  lineHeight: '1.5'
+                  lineHeight: '1.5',
+                  color: '#6E6E73'
                 }}>
                   {highlight.description}
                 </p>
@@ -361,31 +399,36 @@ const About = () => {
           style={{
             maxWidth: '900px',
             margin: '0 auto 6rem auto',
-            background: 'rgba(255, 255, 255, 0.03)',
-            borderRadius: '2rem',
-            padding: '3rem',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            backdropFilter: 'blur(10px)'
+            background: 'rgba(255, 255, 255, 0.9)',
+            backdropFilter: 'blur(20px)',
+            borderRadius: '20px',
+            padding: 'clamp(1.5rem, 4vw, 3rem)',
+            border: '1px solid #E5E5EA',
+            boxShadow: '0 8px 20px rgba(0, 0, 0, 0.04)'
           }}
         >
           <p style={{
-            fontSize: '1.3rem',
-            lineHeight: '1.8',
-            color: 'rgba(255, 255, 255, 0.9)',
+            fontSize: 'clamp(1rem, 3vw, 1.3rem)',
+            lineHeight: '1.7',
+            color: '#3A3A3C',
             marginBottom: '2rem',
-            textAlign: 'center'
+            textAlign: 'center',
+            wordBreak: 'break-word',
+            hyphens: 'auto'
           }}>
             Soy Francisco Javier Mateo Hernández, un líder en el área de tecnología y desarrollo de software especializado en crear 
-            <span style={{ color: '#2BBEF8', fontWeight: '600' }}> soluciones tecnológicas robustas</span> que 
+            <span style={{ color: '#0071E3', fontWeight: '600' }}> soluciones tecnológicas robustas</span> que 
             transforman la manera en que las empresas operan y crecen.
           </p>
           
           <p style={{
-            fontSize: '1.1rem',
-            lineHeight: '1.7',
-            color: 'rgba(255, 255, 255, 0.8)',
+            fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)',
+            lineHeight: '1.6',
+            color: '#6E6E73',
             marginBottom: '2rem',
-            textAlign: 'center'
+            textAlign: 'center',
+            wordBreak: 'break-word',
+            hyphens: 'auto'
           }}>
             Con más de 9 años de experiencia, he trabajado en proyectos que van desde sistemas de gestión 
             empresarial hasta plataformas de e-commerce y APIs personalizadas. Mi enfoque se centra en 
@@ -394,11 +437,13 @@ const About = () => {
           </p>
           
           <p style={{
-            fontSize: '1.1rem',
-            lineHeight: '1.7',
-            color: 'rgba(255, 255, 255, 0.8)',
+            fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)',
+            lineHeight: '1.6',
+            color: '#6E6E73',
             margin: 0,
-            textAlign: 'center'
+            textAlign: 'center',
+            wordBreak: 'break-word',
+            hyphens: 'auto'
           }}>
             He participado como <span style={{ color: '#2BBEF8', fontWeight: '600' }}>ponente y evaluador técnico</span> en 
             prestigiosas instituciones educativas y eventos de la industria tecnológica. Mi experiencia incluye 
@@ -413,87 +458,128 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
+          style={{
+            background: 'linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 50%, #F5F5F7 100%)',
+            borderRadius: 'clamp(16px, 4vw, 32px)',
+            padding: 'clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem)',
+            position: 'relative',
+            overflow: 'hidden',
+            border: '1px solid #E5E5EA',
+            boxShadow: '0 8px 20px rgba(0, 0, 0, 0.04)'
+          }}
         >
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h3 style={{
-              fontSize: '2rem',
-              fontWeight: '600',
-              color: 'var(--text-primary)',
-              marginBottom: '1rem',
-              fontFamily: 'var(--font-primary)'
-            }}>
-              Mi filosofía de trabajo
-            </h3>
-            <p style={{
-              fontSize: '1.1rem',
-              color: 'var(--text-secondary)',
+          <div style={{ position: 'relative', zIndex: 2 }}>
+            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                background: '#F5F5F7',
+                border: '1px solid #E5E5EA',
+                borderRadius: '50px',
+                padding: '0.75rem 1.5rem',
+                marginBottom: '2rem',
+                color: '#0071E3',
+                fontSize: '0.9rem',
+                fontWeight: '600',
+                fontFamily: 'Inter, monospace'
+              }}>
+                <Target size={20} />
+                FILOSOFÍA DE TRABAJO
+              </div>
+              
+              <h3 style={{
+                fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                fontWeight: '600',
+                color: '#1D1D1F',
+                marginBottom: '1rem',
+                fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+              }}>
+                Mi filosofía de trabajo
+              </h3>
+              <p style={{
+                fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)',
+                color: '#6E6E73',
+                maxWidth: '600px',
+                margin: '0 auto'
+              }}>
+                Principios que guían cada proyecto y garantizan resultados excepcionales
+              </p>
+            </div>
+
+            {/* Values Grid - Responsive */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr',
+              gap: '1rem',
               maxWidth: '600px',
               margin: '0 auto'
             }}>
-              Principios que guían cada proyecto y garantizan resultados excepcionales
-            </p>
-          </div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '2rem'
-          }}>
-            {values.map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 * index }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-                style={{
-                  background: 'var(--background-card)',
-                  borderRadius: '1.5rem',
-                  padding: '2rem',
-                  border: '1px solid var(--border-subtle)',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '1rem',
-                  marginBottom: '1rem'
-                }}>
+              {values.map((value, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  style={{
+                    background: index === 1 
+                      ? 'rgba(255, 255, 255, 0.95)' 
+                      : 'rgba(255, 255, 255, 0.9)',
+                    borderRadius: '16px',
+                    padding: '1.5rem',
+                    border: index === 1 
+                      ? '2px solid rgba(0, 113, 227, 0.25)' 
+                      : '1px solid #E5E5EA',
+                    boxShadow: index === 1 
+                      ? 'rgba(0, 113, 227, 0.15) 0px 10px 20px' 
+                      : '0 8px 20px rgba(0, 0, 0, 0.04)',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
                   <div style={{
-                    width: '50px',
-                    height: '50px',
-                    background: 'rgba(43, 190, 248, 0.1)',
-                    borderRadius: '12px',
                     display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'var(--accent-cyan)',
-                    flexShrink: 0
+                    alignItems: 'flex-start',
+                    gap: '1rem'
                   }}>
-                    {value.icon}
-                  </div>
-                  <div>
-                    <h4 style={{
-                      fontSize: '1.25rem',
-                      fontWeight: '600',
-                      color: 'var(--text-primary)',
-                      marginBottom: '0.5rem'
+                    <div style={{
+                      width: '50px',
+                      height: '50px',
+                      background: 'linear-gradient(135deg, rgba(0, 113, 227, 0.19), rgba(0, 113, 227, 0.31))',
+                      borderRadius: '16px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#0071E3',
+                      flexShrink: 0,
+                      border: '2px solid rgba(0, 113, 227, 0.31)'
                     }}>
-                      {value.title}
-                    </h4>
-                    <p style={{
-                      color: 'var(--text-secondary)',
-                      lineHeight: '1.6',
-                      margin: 0
-                    }}>
-                      {value.description}
-                    </p>
+                      {value.icon}
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <h4 style={{
+                        fontSize: 'clamp(1rem, 2.5vw, 1.1rem)',
+                        fontWeight: '600',
+                        marginBottom: '0.5rem',
+                        color: '#1D1D1F',
+                        fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+                      }}>
+                        {value.title}
+                      </h4>
+                      <p style={{
+                        lineHeight: '1.6',
+                        margin: 0,
+                        fontSize: 'clamp(0.85rem, 2vw, 0.9rem)',
+                        color: '#3A3A3C'
+                      }}>
+                        {value.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

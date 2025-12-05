@@ -1,4 +1,4 @@
-/* Animated Navbar Styles - Apple/Stripe Inspired */
+/* Animated Navbar Styles - Apple Premium Design */
 
 .progressBar {
   position: fixed;
@@ -6,9 +6,9 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  background: linear-gradient(90deg, #0071E3, #2997FF);
   transform-origin: left;
-  z-index: var(--z-fixed);
+  z-index: 1000;
 }
 
 .navbar {
@@ -16,58 +16,57 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: var(--z-sticky);
-  transition: all var(--duration-normal) var(--ease-out);
+  z-index: 999;
+  transition: all 0.3s ease;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #E5E5EA;
 }
 
 .navbar.scrolled {
   background: rgba(255, 255, 255, 0.95);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
 }
 
-@media (prefers-color-scheme: dark) {
-  .navbar {
-    background: rgba(28, 28, 30, 0.8);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .navbar.scrolled {
-    background: rgba(28, 28, 30, 0.95);
-  }
-}
+
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  height: 70px;
 }
 
 @media (min-width: 768px) {
   .container {
-    padding: 0 var(--spacing-xl);
+    padding: 0 2rem;
+    height: 80px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 3rem;
   }
 }
 
 .logo {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0071E3;
   text-decoration: none;
-  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.01em;
 }
 
 .desktopNav {
   display: none;
   align-items: center;
-  gap: var(--spacing-xl);
+  gap: 2rem;
 }
 
 @media (min-width: 768px) {
@@ -77,16 +76,16 @@
 }
 
 .navLink {
-  color: var(--color-text-primary);
+  color: #1D1D1F;
   text-decoration: none;
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-base);
-  transition: color var(--duration-fast) var(--ease-out);
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.2s ease;
   position: relative;
 }
 
 .navLink:hover {
-  color: var(--color-primary);
+  color: #0071E3;
 }
 
 .navLink::after {
@@ -96,8 +95,8 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--color-primary);
-  transition: width var(--duration-normal) var(--ease-out);
+  background: #0071E3;
+  transition: width 0.3s ease;
 }
 
 .navLink:hover::after {
@@ -105,19 +104,22 @@
 }
 
 .ctaButton {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: #0071E3;
   color: white;
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: var(--radius-full);
+  padding: 0.5rem 1rem;
+  border-radius: 980px;
   text-decoration: none;
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-sm);
-  box-shadow: var(--shadow-md);
-  transition: all var(--duration-normal) var(--ease-out);
+  font-weight: 500;
+  font-size: 0.875rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
 }
 
 .ctaButton:hover {
-  box-shadow: var(--shadow-lg);
+  background: #0A84FF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);
 }
 
 .menuButton {
@@ -126,12 +128,12 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  color: var(--color-text-primary);
+  background: #FFFFFF;
+  border: 1px solid #E5E5EA;
+  border-radius: 12px;
+  color: #1D1D1F;
   cursor: pointer;
-  transition: all var(--duration-fast) var(--ease-out);
+  transition: all 0.2s ease;
 }
 
 @media (min-width: 768px) {
@@ -141,45 +143,41 @@
 }
 
 .menuButton:hover {
-  background: var(--color-gray-100);
+  background: #F5F5F7;
 }
 
-@media (prefers-color-scheme: dark) {
-  .menuButton:hover {
-    background: var(--color-gray-700);
-  }
-}
+
 
 .overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
-  z-index: var(--z-modal-backdrop);
+  z-index: 998;
 }
 
 .mobileMenu {
   position: fixed;
   top: 80px;
-  right: var(--spacing-md);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-2xl);
-  padding: var(--spacing-lg);
+  right: 2rem;
+  background: #FFFFFF;
+  border: 1px solid #E5E5EA;
+  border-radius: 20px;
+  padding: 1.5rem;
   min-width: 280px;
-  box-shadow: var(--shadow-2xl);
-  z-index: var(--z-modal);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.06);
+  z-index: 999;
 }
 
 .mobileNavLink {
   display: block;
-  padding: var(--spacing-md) 0;
-  color: var(--color-text-primary);
+  padding: 1rem 0;
+  color: #1D1D1F;
   text-decoration: none;
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-size-lg);
-  border-bottom: 1px solid var(--color-border);
-  transition: all var(--duration-fast) var(--ease-out);
+  font-weight: 500;
+  font-size: 1.125rem;
+  border-bottom: 1px solid #E5E5EA;
+  transition: all 0.2s ease;
 }
 
 .mobileNavLink:last-of-type {
@@ -187,25 +185,27 @@
 }
 
 .mobileNavLink:hover {
-  color: var(--color-primary);
+  color: #0071E3;
 }
 
 .mobileCta {
   display: block;
-  margin-top: var(--spacing-lg);
-  padding: var(--spacing-md) var(--spacing-lg);
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  margin-top: 1.5rem;
+  padding: 0.875rem 1.5rem;
+  background: #0071E3;
   color: white;
   text-decoration: none;
-  font-weight: var(--font-weight-semibold);
+  font-weight: 500;
   text-align: center;
-  border-radius: var(--radius-xl);
-  transition: all var(--duration-normal) var(--ease-out);
+  border-radius: 980px;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
 }
 
 .mobileCta:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  background: #0A84FF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.25);
 }
 
 /* Touch device optimizations */
@@ -218,6 +218,6 @@
   .menuButton:hover,
   .mobileCta:hover {
     transform: none;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
   }
 }

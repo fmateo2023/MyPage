@@ -112,21 +112,17 @@ const Portfolio = () => {
   return (
     <section id="portfolio" style={{
       padding: isTablet ? '8rem 0' : '6rem 0',
-      background: 'var(--background-dark)',
+      background: '#F5F5F7',
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* Background Pattern */}
       <div style={{
         position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundImage: `
-          radial-gradient(circle at 25% 75%, rgba(43, 190, 248, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 75% 25%, rgba(0, 119, 255, 0.1) 0%, transparent 50%)
-        `,
+        backgroundImage: 'radial-gradient(circle at 25% 75%, rgba(43, 190, 248, 0.1) 0%, transparent 50%), radial-gradient(circle at 75% 25%, rgba(0, 119, 255, 0.1) 0%, transparent 50%)',
         pointerEvents: 'none'
       }} />
 
@@ -137,7 +133,6 @@ const Portfolio = () => {
         position: 'relative',
         zIndex: 10
       }}>
-        {/* Header */}
         <div style={{
           textAlign: 'center',
           marginBottom: isTablet ? '4rem' : '3rem'
@@ -146,12 +141,12 @@ const Portfolio = () => {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.75rem',
-            background: 'rgba(43, 190, 248, 0.1)',
-            border: '1px solid rgba(43, 190, 248, 0.2)',
+            background: '#F5F5F7',
+            border: '1px solid #E5E5EA',
             borderRadius: '50px',
             padding: '0.75rem 1.5rem',
             marginBottom: '2rem',
-            color: '#2BBEF8',
+            color: '#0071E3',
             fontSize: '0.9rem',
             fontWeight: '600',
             fontFamily: 'IBM Plex Mono, monospace'
@@ -164,8 +159,8 @@ const Portfolio = () => {
             fontSize: isTablet ? 'clamp(2.5rem, 4vw, 3.5rem)' : 'clamp(2rem, 6vw, 2.5rem)',
             fontWeight: '700',
             marginBottom: '1.5rem',
-            color: 'white',
-            fontFamily: 'Space Grotesk, sans-serif'
+            color: '#1D1D1F',
+            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
           }}>
             Proyectos que{' '}
             <span style={{
@@ -181,7 +176,7 @@ const Portfolio = () => {
           <p style={{
             fontSize: isTablet ? '1.25rem' : '1.1rem',
             lineHeight: '1.6',
-            color: 'rgba(255, 255, 255, 0.8)',
+            color: '#6E6E73',
             maxWidth: '700px',
             margin: '0 auto'
           }}>
@@ -190,7 +185,6 @@ const Portfolio = () => {
           </p>
         </div>
 
-        {/* Projects Grid */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: isDesktop ? 'repeat(2, 1fr)' : '1fr',
@@ -201,13 +195,13 @@ const Portfolio = () => {
             <div
               key={project.id}
               style={{
-                background: 'rgba(255, 255, 255, 0.05)',
+                background: '#FFFFFF',
                 borderRadius: '20px',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                border: '1px solid #E5E5EA',
                 backdropFilter: 'blur(10px)',
                 boxShadow: hoveredProject === project.id 
-                  ? '0 15px 40px rgba(0, 0, 0, 0.3)' 
-                  : '0 8px 25px rgba(0, 0, 0, 0.2)',
+                  ? '0 14px 30px rgba(0, 0, 0, 0.06)' 
+                  : '0 8px 20px rgba(0, 0, 0, 0.04)',
                 transform: hoveredProject === project.id ? 'translateY(-5px)' : 'translateY(0)',
                 transition: 'all 0.3s ease',
                 cursor: 'pointer',
@@ -217,7 +211,6 @@ const Portfolio = () => {
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
             >
-              {/* Project Image */}
               <div style={{
                 position: 'relative',
                 height: '200px',
@@ -237,45 +230,35 @@ const Portfolio = () => {
                     transform: hoveredProject === project.id ? 'scale(1.05)' : 'scale(1)',
                     display: 'block'
                   }}
-                  onError={(e) => {
-                    e.target.style.background = `linear-gradient(135deg, ${project.color}20 0%, ${project.color}40 100%)`
-                    e.target.style.display = 'flex'
-                    e.target.style.alignItems = 'center'
-                    e.target.style.justifyContent = 'center'
-                    e.target.innerHTML = `<div style="color: ${project.color}; font-size: 3rem;">${project.icon}</div>`
-                  }}
                 />
                 
-                {/* Overlay */}
                 <div style={{
                   position: 'absolute',
                   top: 0,
                   left: 0,
                   right: 0,
                   bottom: 0,
-                  background: `linear-gradient(135deg, ${project.color}20 0%, ${project.color}40 100%)`,
+                  background: 'rgba(0, 119, 255, 0.2)',
                   opacity: hoveredProject === project.id ? 1 : 0,
                   transition: 'all 0.3s ease'
                 }} />
 
-                {/* Category Badge */}
                 <div style={{
                   position: 'absolute',
                   top: '1rem',
                   left: '1rem',
-                  background: 'rgba(43, 190, 248, 0.2)',
+                  background: 'linear-gradient(135deg, #0066cc, #0099ff)',
                   backdropFilter: 'blur(10px)',
                   padding: '0.5rem 1rem',
                   borderRadius: '50px',
                   fontSize: '0.8rem',
                   fontWeight: '600',
-                  color: '#2BBEF8',
+                  color: 'white',
                   border: '1px solid rgba(43, 190, 248, 0.3)'
                 }}>
                   {project.category}
                 </div>
 
-                {/* Action Buttons */}
                 <div style={{
                   position: 'absolute',
                   top: '1rem',
@@ -319,11 +302,9 @@ const Portfolio = () => {
                 </div>
               </div>
 
-              {/* Content */}
               <div style={{
                 padding: isTablet ? '2rem' : '1.5rem'
               }}>
-                {/* Header */}
                 <div style={{
                   display: 'flex',
                   alignItems: 'flex-start',
@@ -348,19 +329,18 @@ const Portfolio = () => {
                     <h3 style={{
                       fontSize: isTablet ? '1.25rem' : '1.1rem',
                       fontWeight: '600',
-                      color: 'white',
+                      color: '#1D1D1F',
                       marginBottom: '0.5rem',
                       lineHeight: '1.3',
-                      fontFamily: 'Space Grotesk, sans-serif'
+                      fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
                     }}>
                       {project.title}
                     </h3>
                   </div>
                 </div>
 
-                {/* Description */}
                 <p style={{
-                  color: 'rgba(255, 255, 255, 0.8)',
+                  color: '#6E6E73',
                   lineHeight: '1.6',
                   marginBottom: '1.5rem',
                   fontSize: '0.95rem'
@@ -368,14 +348,13 @@ const Portfolio = () => {
                   {project.description}
                 </p>
 
-                {/* Tech Stack */}
                 <div style={{ marginBottom: '1.5rem' }}>
                   <div style={{
                     fontSize: '0.8rem',
                     fontWeight: '600',
-                    color: 'rgba(255, 255, 255, 0.6)',
+                    color: '#6E6E73',
                     marginBottom: '0.75rem',
-                    fontFamily: 'IBM Plex Mono, monospace',
+                    fontFamily: 'Inter, monospace',
                     letterSpacing: '0.05em'
                   }}>
                     STACK TECNOLÓGICO:
@@ -389,13 +368,12 @@ const Portfolio = () => {
                       <span 
                         key={techIndex}
                         style={{
-                          padding: '0.4rem 0.8rem',
-                          background: 'rgba(43, 190, 248, 0.1)',
-                          color: '#2BBEF8',
-                          fontSize: '0.8rem',
-                          fontWeight: '500',
-                          borderRadius: '8px',
-                          border: '1px solid rgba(43, 190, 248, 0.2)'
+                          padding: '0.25rem 0.75rem',
+                          background: 'rgba(0, 113, 227, 0.1)',
+                          color: '#0071E3',
+                          borderRadius: '50px',
+                          fontSize: '0.75rem',
+                          fontWeight: '500'
                         }}
                       >
                         {tech}
@@ -404,25 +382,24 @@ const Portfolio = () => {
                   </div>
                 </div>
 
-                {/* Footer */}
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   paddingTop: '1rem',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+                  borderTop: '1px solid #E5E5EA'
                 }}>
                   <span style={{
                     fontSize: '0.85rem',
-                    color: 'rgba(255, 255, 255, 0.6)',
-                    fontFamily: 'IBM Plex Mono, monospace'
+                    color: '#6E6E73',
+                    fontFamily: 'Inter, monospace'
                   }}>
                     {project.client}
                   </span>
                   <button style={{
                     background: 'none',
                     border: 'none',
-                    color: '#2BBEF8',
+                    color: '#0071E3',
                     fontSize: '0.9rem',
                     fontWeight: '600',
                     cursor: 'pointer',
@@ -440,7 +417,6 @@ const Portfolio = () => {
           ))}
         </div>
 
-        {/* CTA Section */}
         <div style={{
           background: 'linear-gradient(135deg, #0A1A2F 0%, #1A2B42 100%)',
           borderRadius: '2rem',
@@ -449,17 +425,13 @@ const Portfolio = () => {
           position: 'relative',
           overflow: 'hidden'
         }}>
-          {/* Background Pattern */}
           <div style={{
             position: 'absolute',
             top: 0,
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundImage: `
-              radial-gradient(circle at 25% 25%, rgba(43, 190, 248, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 75% 75%, rgba(0, 119, 255, 0.1) 0%, transparent 50%)
-            `,
+            backgroundImage: 'radial-gradient(circle at 25% 25%, rgba(43, 190, 248, 0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(0, 119, 255, 0.1) 0%, transparent 50%)',
             pointerEvents: 'none'
           }} />
 

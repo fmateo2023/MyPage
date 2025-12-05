@@ -141,8 +141,24 @@ const AnimatedNavbar = () => {
             }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            style={{
+              width: '50px',
+              height: '50px',
+              borderRadius: '50%',
+              background: 'linear-gradient(145deg, #ffffff, #e6e6e6)',
+              boxShadow: 'inset 5px 5px 10px #d1d1d1, inset -5px -5px 10px #ffffff, 0 4px 15px rgba(0, 0, 0, 0.1)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '0.75rem',
+              fontWeight: '700',
+              color: '#0077FF',
+              textDecoration: 'none',
+              border: '2px solid rgba(0, 119, 255, 0.2)',
+              transition: 'all 0.3s ease'
+            }}
           >
-            FM.
+            FJMH
           </motion.a>
 
           {/* Desktop Navigation */}

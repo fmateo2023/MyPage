@@ -19,7 +19,6 @@ const Participations = () => {
   const handleCardClick = (index) => {
     setActiveIndex(index)
     if (!isMobile && index > 2) {
-      // Smooth scroll to keep detail panel visible for bottom cards
       setTimeout(() => {
         const detailPanel = document.querySelector('#participation-detail-panel')
         if (detailPanel) {
@@ -125,25 +124,40 @@ const Participations = () => {
   return (
     <section id="participations" style={{
       padding: '8rem 0',
-      background: 'var(--background-dark)',
+      background: 'linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 50%, #F5F5F7 100%)',
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* Background Pattern */}
+      {/* Animated Background */}
       <div style={{
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundImage: `
-          radial-gradient(circle at 20% 80%, rgba(43, 190, 248, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 80% 20%, rgba(0, 119, 255, 0.1) 0%, transparent 50%)
-        `,
-        pointerEvents: 'none'
-      }} />
+        inset: 0,
+        overflow: 'hidden',
+        zIndex: 1
+      }}>
+        <div style={{
+          position: 'absolute',
+          top: '20%',
+          left: '20%',
+          width: '300px',
+          height: '300px',
+          background: 'radial-gradient(circle, rgba(0, 113, 227, 0.15) 0%, rgba(41, 151, 255, 0.1) 50%, transparent 70%)',
+          borderRadius: '50%',
+          filter: 'blur(40px)'
+        }} />
+        <div style={{
+          position: 'absolute',
+          bottom: '20%',
+          right: '20%',
+          width: '400px',
+          height: '400px',
+          background: 'radial-gradient(circle, rgba(10, 132, 255, 0.15) 0%, rgba(0, 113, 227, 0.1) 50%, transparent 70%)',
+          borderRadius: '50%',
+          filter: 'blur(60px)'
+        }} />
+      </div>
 
-      <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -156,15 +170,15 @@ const Participations = () => {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.75rem',
-            background: 'rgba(43, 190, 248, 0.1)',
-            border: '1px solid rgba(43, 190, 248, 0.2)',
+            background: '#F5F5F7',
+            border: '1px solid #E5E5EA',
             borderRadius: '50px',
             padding: '0.75rem 1.5rem',
             marginBottom: '2rem',
-            color: 'var(--accent-cyan)',
+            color: '#0071E3',
             fontSize: '0.9rem',
             fontWeight: '600',
-            fontFamily: 'var(--font-mono)'
+            fontFamily: 'Inter, monospace'
           }}>
             <Award size={20} />
             PARTICIPACIONES & EVENTOS
@@ -174,12 +188,12 @@ const Participations = () => {
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             fontWeight: '700',
             marginBottom: '1.5rem',
-            color: 'var(--text-primary)',
-            fontFamily: 'var(--font-primary)'
+            color: '#1D1D1F',
+            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
           }}>
             Compartiendo{' '}
             <span style={{
-              background: 'var(--gradient-primary)',
+              background: 'linear-gradient(90deg, #0071E3, #2997FF)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
             }}>
@@ -190,7 +204,7 @@ const Participations = () => {
           <p style={{
             fontSize: '1.25rem',
             lineHeight: '1.7',
-            color: 'var(--text-secondary)',
+            color: '#6E6E73',
             maxWidth: '700px',
             margin: '0 auto'
           }}>
@@ -222,20 +236,11 @@ const Participations = () => {
                   top: '30px',
                   height: `${participations.length * 140 + 20}px`,
                   width: '4px',
-                  background: `
-                    linear-gradient(180deg, 
-                      var(--accent-cyan) 0%, 
-                      var(--primary-blue) 50%, 
-                      var(--accent-cyan) 100%
-                    )
-                  `,
+                  background: 'linear-gradient(180deg, #2BBEF8 0%, #0077FF 50%, #2BBEF8 100%)',
                   borderRadius: '3px',
                   transformOrigin: 'top',
                   zIndex: 1,
-                  boxShadow: `
-                    0 0 20px rgba(43, 190, 248, 0.3),
-                    inset 0 0 10px rgba(255, 255, 255, 0.1)
-                  `
+                  boxShadow: '0 0 20px rgba(43, 190, 248, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.1)'
                 }}
               />
             )}
@@ -267,10 +272,11 @@ const Participations = () => {
                     position: 'relative',
                     background: activeIndex === index 
                       ? 'linear-gradient(135deg, rgba(43, 190, 248, 0.1), rgba(0, 119, 255, 0.05))' 
-                      : 'var(--background-card)',
-                    borderRadius: '1.5rem',
+                      : 'rgba(255, 255, 255, 0.9)',
+                    backdropFilter: 'blur(20px)',
+                    borderRadius: '20px',
                     padding: isMobile ? '1.5rem' : '2rem',
-                    border: `2px solid ${activeIndex === index ? participation.color : 'var(--border-subtle)'}`,
+                    border: `2px solid ${activeIndex === index ? participation.color : '#E5E5EA'}`,
                     cursor: 'pointer',
                     transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                     width: '100%',
@@ -280,8 +286,7 @@ const Participations = () => {
                     overflow: 'hidden',
                     boxShadow: activeIndex === index 
                       ? `0 20px 40px ${participation.color}20, 0 0 0 1px ${participation.color}30`
-                      : '0 4px 20px rgba(0, 0, 0, 0.1)',
-                    backdropFilter: 'blur(10px)'
+                      : '0 8px 20px rgba(0, 0, 0, 0.04)'
                   }}
                 >
                   {/* Timeline Dot - Only for desktop */}
@@ -294,15 +299,8 @@ const Participations = () => {
                       animate={{
                         scale: activeIndex === index ? 1.3 : 1,
                         boxShadow: activeIndex === index 
-                          ? `
-                            0 0 30px ${participation.color}, 
-                            0 0 60px ${participation.color}40,
-                            inset 0 0 15px rgba(255, 255, 255, 0.2)
-                          `
-                          : `
-                            0 0 15px rgba(107, 114, 128, 0.4),
-                            inset 0 0 8px rgba(255, 255, 255, 0.1)
-                          `
+                          ? `0 0 30px ${participation.color}, 0 0 60px ${participation.color}40, inset 0 0 15px rgba(255, 255, 255, 0.2)`
+                          : '0 0 15px rgba(107, 114, 128, 0.4), inset 0 0 8px rgba(255, 255, 255, 0.1)'
                       }}
                       style={{
                         position: 'absolute',
@@ -311,27 +309,14 @@ const Participations = () => {
                         width: '18px',
                         height: '18px',
                         background: activeIndex === index 
-                          ? `
-                            radial-gradient(circle at 30% 30%, 
-                              ${participation.color}FF, 
-                              ${participation.color}CC, 
-                              ${participation.color}99
-                            )
-                          `
-                          : `
-                            radial-gradient(circle at 30% 30%, 
-                              #9CA3AF, 
-                              #6B7280, 
-                              #4B5563
-                            )
-                          `,
+                          ? `radial-gradient(circle at 30% 30%, ${participation.color}FF, ${participation.color}CC, ${participation.color}99)`
+                          : 'radial-gradient(circle at 30% 30%, #9CA3AF, #6B7280, #4B5563)',
                         borderRadius: '50%',
                         transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        border: '3px solid var(--background-dark)',
+                        border: '3px solid #F5F5F7',
                         zIndex: 3
                       }}
                     >
-                      {/* Inner glow effect */}
                       <div style={{
                         position: 'absolute',
                         top: '2px',
@@ -357,7 +342,6 @@ const Participations = () => {
                         height: '100%'
                       }}
                     >
-                      {/* Mobile Full Content */}
                       <div style={{
                         position: 'relative',
                         height: '180px',
@@ -394,7 +378,7 @@ const Participations = () => {
                           fontSize: '0.75rem',
                           fontWeight: '600',
                           borderRadius: '50px',
-                          fontFamily: 'var(--font-mono)'
+                          fontFamily: 'Inter, monospace'
                         }}>
                           {participation.type}
                         </div>
@@ -403,7 +387,7 @@ const Participations = () => {
                       <h4 style={{
                         fontSize: '1.1rem',
                         fontWeight: '600',
-                        color: 'var(--text-primary)',
+                        color: '#1D1D1F',
                         marginBottom: '0.5rem',
                         lineHeight: '1.3'
                       }}>
@@ -420,7 +404,7 @@ const Participations = () => {
                       </div>
                       
                       <p style={{
-                        color: 'var(--text-secondary)',
+                        color: '#3A3A3C',
                         lineHeight: '1.6',
                         fontSize: '0.85rem',
                         marginBottom: '1rem'
@@ -451,7 +435,6 @@ const Participations = () => {
                       </div>
                     </motion.div>
                   ) : (
-                    /* Normal Card Content */
                     <div>
                       <div style={{
                         display: 'flex',
@@ -478,7 +461,7 @@ const Participations = () => {
                           <h4 style={{
                             fontSize: isMobile ? '1rem' : '1.1rem',
                             fontWeight: '600',
-                            color: 'var(--text-primary)',
+                            color: '#1D1D1F',
                             marginBottom: '0.25rem',
                             lineHeight: '1.3'
                           }}>
@@ -496,12 +479,12 @@ const Participations = () => {
                         
                         <span style={{
                           padding: '0.25rem 0.75rem',
-                          background: `${participation.color}`,
+                          background: participation.color,
                           color: 'white',
                           fontSize: '0.75rem',
                           fontWeight: '600',
                           borderRadius: '50px',
-                          fontFamily: 'var(--font-mono)'
+                          fontFamily: 'Inter, monospace'
                         }}>
                           {participation.type}
                         </span>
@@ -509,7 +492,7 @@ const Participations = () => {
                       
                       <div style={{
                         fontSize: isMobile ? '0.75rem' : '0.85rem',
-                        color: 'var(--text-muted)',
+                        color: '#6E6E73',
                         display: 'flex',
                         alignItems: 'center',
                         gap: isMobile ? '0.5rem' : '1rem',
@@ -544,28 +527,19 @@ const Participations = () => {
               }}
               id="participation-detail-panel"
               style={{
-                background: `linear-gradient(135deg, 
-                  rgba(43, 190, 248, 0.05), 
-                  rgba(0, 119, 255, 0.02), 
-                  var(--background-card)
-                )`,
-                borderRadius: '2rem',
+                background: 'rgba(255, 255, 255, 0.9)',
+                backdropFilter: 'blur(20px)',
+                borderRadius: '24px',
                 overflow: 'hidden',
                 border: `2px solid ${participations[activeIndex].color}30`,
-                boxShadow: `
-                  0 25px 50px rgba(0, 0, 0, 0.15),
-                  0 0 0 1px ${participations[activeIndex].color}20,
-                  inset 0 1px 0 rgba(255, 255, 255, 0.1)
-                `,
+                boxShadow: '0 8px 20px rgba(0, 0, 0, 0.04)',
                 position: 'sticky',
                 top: activeIndex > 2 ? '1rem' : '2rem',
                 height: 'fit-content',
                 width: '100%',
-                backdropFilter: 'blur(20px)',
                 transition: 'top 0.3s ease'
               }}
             >
-              {/* Image */}
               <motion.div
                 initial={{ scale: 1.1, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -593,12 +567,7 @@ const Participations = () => {
                   left: 0,
                   right: 0,
                   bottom: 0,
-                  background: `linear-gradient(
-                    135deg, 
-                    ${participations[activeIndex].color}40 0%, 
-                    transparent 50%, 
-                    rgba(0, 0, 0, 0.3) 100%
-                  )`,
+                  background: `linear-gradient(135deg, ${participations[activeIndex].color}40 0%, transparent 50%, rgba(0, 0, 0, 0.3) 100%)`,
                   pointerEvents: 'none'
                 }} />
                 <motion.div
@@ -615,7 +584,7 @@ const Participations = () => {
                     fontSize: '0.9rem',
                     fontWeight: '600',
                     borderRadius: '50px',
-                    fontFamily: 'var(--font-mono)',
+                    fontFamily: 'Inter, monospace',
                     boxShadow: `0 10px 25px ${participations[activeIndex].color}40`
                   }}
                 >
@@ -623,7 +592,6 @@ const Participations = () => {
                 </motion.div>
               </motion.div>
               
-              {/* Content */}
               <div style={{ padding: '2.5rem' }}>
                 <motion.h3
                   initial={{ y: 20, opacity: 0 }}
@@ -632,7 +600,7 @@ const Participations = () => {
                   style={{
                     fontSize: '1.75rem',
                     fontWeight: '700',
-                    color: 'var(--text-primary)',
+                    color: '#1D1D1F',
                     marginBottom: '1rem',
                     lineHeight: '1.3'
                   }}
@@ -663,7 +631,7 @@ const Participations = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
                   style={{
-                    color: 'var(--text-secondary)',
+                    color: '#3A3A3C',
                     lineHeight: '1.8',
                     fontSize: '1.1rem',
                     marginBottom: '2rem'
@@ -681,7 +649,7 @@ const Participations = () => {
                   <h5 style={{
                     fontSize: '1rem',
                     fontWeight: '600',
-                    color: 'var(--text-primary)',
+                    color: '#1D1D1F',
                     marginBottom: '1rem',
                     display: 'flex',
                     alignItems: 'center',
@@ -729,15 +697,16 @@ const Participations = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
           style={{
-            background: 'var(--gradient-card)',
-            borderRadius: '2rem',
+            background: 'rgba(255, 255, 255, 0.9)',
+            backdropFilter: 'blur(20px)',
+            borderRadius: '24px',
             padding: '3rem 2rem',
-            border: '1px solid var(--border-subtle)',
+            border: '1px solid #E5E5EA',
+            boxShadow: '0 8px 20px rgba(0, 0, 0, 0.04)',
             position: 'relative',
             overflow: 'hidden'
           }}
         >
-          {/* Background Glow */}
           <div style={{
             position: 'absolute',
             top: '50%',
@@ -754,15 +723,15 @@ const Participations = () => {
               <h3 style={{
                 fontSize: '2rem',
                 fontWeight: '600',
-                color: 'var(--text-primary)',
+                color: '#1D1D1F',
                 marginBottom: '1rem',
-                fontFamily: 'var(--font-primary)'
+                fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
               }}>
                 Impacto en la comunidad
               </h3>
               <p style={{
                 fontSize: '1.1rem',
-                color: 'var(--text-secondary)'
+                color: '#3A3A3C'
               }}>
                 Resultados de mi participación en eventos tecnológicos
               </p>
@@ -784,9 +753,11 @@ const Participations = () => {
                   style={{
                     textAlign: 'center',
                     padding: '2rem 1rem',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    borderRadius: '1.5rem',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    background: 'rgba(255, 255, 255, 0.9)',
+                    backdropFilter: 'blur(10px)',
+                    borderRadius: '16px',
+                    border: '1px solid #E5E5EA',
+                    boxShadow: '0 8px 20px rgba(0, 0, 0, 0.04)',
                     transition: 'all 0.3s ease'
                   }}
                 >
@@ -798,7 +769,7 @@ const Participations = () => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: 'var(--accent-cyan)',
+                    color: '#2BBEF8',
                     margin: '0 auto 1rem auto'
                   }}>
                     {achievement.icon}
@@ -806,15 +777,15 @@ const Participations = () => {
                   <div style={{
                     fontSize: '3rem',
                     fontWeight: '700',
-                    color: 'var(--text-primary)',
+                    color: '#1D1D1F',
                     marginBottom: '0.5rem',
-                    fontFamily: 'var(--font-primary)'
+                    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
                   }}>
                     {achievement.number}
                   </div>
                   <div style={{
                     fontSize: '0.9rem',
-                    color: 'var(--text-muted)',
+                    color: '#6E6E73',
                     fontWeight: '500'
                   }}>
                     {achievement.label}

@@ -75,7 +75,7 @@ const Testimonials = () => {
   return (
     <section id="testimonials" style={{
       padding: isTablet ? '8rem 0' : '6rem 0',
-      background: 'var(--background-dark)',
+      background: '#FFFFFF',
       position: 'relative',
       overflow: 'hidden'
     }}>
@@ -109,15 +109,15 @@ const Testimonials = () => {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.75rem',
-            background: 'rgba(43, 190, 248, 0.1)',
-            border: '1px solid rgba(43, 190, 248, 0.2)',
+            background: '#F5F5F7',
+            border: '1px solid #E5E5EA',
             borderRadius: '50px',
             padding: '0.75rem 1.5rem',
             marginBottom: '2rem',
-            color: '#2BBEF8',
+            color: '#0071E3',
             fontSize: '0.9rem',
             fontWeight: '600',
-            fontFamily: 'IBM Plex Mono, monospace'
+            fontFamily: 'Inter, monospace'
           }}>
             <Users size={20} />
             TESTIMONIOS DE CLIENTES
@@ -127,8 +127,8 @@ const Testimonials = () => {
             fontSize: isTablet ? 'clamp(2.5rem, 4vw, 3.5rem)' : 'clamp(2rem, 6vw, 2.5rem)',
             fontWeight: '700',
             marginBottom: '1.5rem',
-            color: 'white',
-            fontFamily: 'Space Grotesk, sans-serif'
+            color: '#1D1D1F',
+            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
           }}>
             Lo que dicen mis{' '}
             <span style={{
@@ -144,7 +144,7 @@ const Testimonials = () => {
           <p style={{
             fontSize: isTablet ? '1.25rem' : '1.1rem',
             lineHeight: '1.6',
-            color: 'rgba(255, 255, 255, 0.8)',
+            color: '#6E6E73',
             maxWidth: '700px',
             margin: '0 auto'
           }}>
@@ -164,12 +164,12 @@ const Testimonials = () => {
             <div
               key={index}
               style={{
-                background: 'rgba(255, 255, 255, 0.05)',
+                background: '#FFFFFF',
                 borderRadius: '20px',
                 padding: isTablet ? '2rem' : '1.5rem',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                border: '1px solid #E5E5EA',
                 backdropFilter: 'blur(10px)',
-                boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)',
+                boxShadow: '0 8px 20px rgba(0, 0, 0, 0.04)',
                 transition: 'all 0.3s ease',
                 position: 'relative',
                 overflow: 'hidden',
@@ -177,13 +177,13 @@ const Testimonials = () => {
               }}
               onMouseEnter={(e) => {
                 e.target.style.transform = 'translateY(-5px)'
-                e.target.style.background = 'rgba(255, 255, 255, 0.08)'
-                e.target.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.3)'
+                e.target.style.background = '#F5F5F7'
+                e.target.style.boxShadow = '0 14px 30px rgba(0, 0, 0, 0.06)'
               }}
               onMouseLeave={(e) => {
                 e.target.style.transform = 'translateY(0)'
-                e.target.style.background = 'rgba(255, 255, 255, 0.05)'
-                e.target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.2)'
+                e.target.style.background = '#FFFFFF'
+                e.target.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.04)'
               }}
             >
               {/* Quote Icon */}
@@ -195,14 +195,14 @@ const Testimonials = () => {
                 <div style={{
                   width: '60px',
                   height: '60px',
-                  background: 'rgba(43, 190, 248, 0.1)',
+                  background: '#F5F5F7',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  border: '1px solid rgba(43, 190, 248, 0.2)'
+                  border: '1px solid #E5E5EA'
                 }}>
-                  <Quote size={24} color="#2BBEF8" />
+                  <Quote size={24} color="#0071E3" />
                 </div>
               </div>
 
@@ -218,7 +218,7 @@ const Testimonials = () => {
 
               {/* Testimonial Text */}
               <p style={{
-                color: 'rgba(255, 255, 255, 0.9)',
+                color: '#1D1D1F',
                 textAlign: 'center',
                 marginBottom: '2rem',
                 lineHeight: '1.6',
@@ -232,12 +232,12 @@ const Testimonials = () => {
               {/* Author Info */}
               <div style={{
                 textAlign: 'center',
-                borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+                borderTop: '1px solid #E5E5EA',
                 paddingTop: '1.5rem'
               }}>
                 <div style={{
                   fontWeight: '600',
-                  color: 'white',
+                  color: '#1D1D1F',
                   marginBottom: '0.5rem',
                   fontSize: '1rem'
                 }}>
@@ -245,7 +245,7 @@ const Testimonials = () => {
                 </div>
                 <div style={{
                   fontSize: '0.875rem',
-                  color: '#2BBEF8',
+                  color: '#0071E3',
                   marginBottom: '0.25rem',
                   fontWeight: '500'
                 }}>
@@ -253,7 +253,7 @@ const Testimonials = () => {
                 </div>
                 <div style={{
                   fontSize: '0.8rem',
-                  color: 'rgba(255, 255, 255, 0.6)'
+                  color: '#6E6E73'
                 }}>
                   {testimonial.company}
                 </div>
@@ -264,12 +264,12 @@ const Testimonials = () => {
 
         {/* Stats */}
         <div style={{
-          background: 'rgba(255, 255, 255, 0.05)',
+          background: '#F5F5F7',
           borderRadius: '24px',
           padding: isTablet ? '3rem' : '2rem',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
+          border: '1px solid #E5E5EA',
           backdropFilter: 'blur(10px)',
-          boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)',
+          boxShadow: '0 8px 20px rgba(0, 0, 0, 0.04)',
           marginBottom: isTablet ? '4rem' : '3rem',
           position: 'relative'
         }}>
@@ -281,7 +281,7 @@ const Testimonials = () => {
             transform: 'translateX(-50%)',
             width: '60px',
             height: '3px',
-            background: 'linear-gradient(135deg, #2BBEF8 0%, #0077FF 100%)',
+            background: 'linear-gradient(90deg, #0071E3, #2997FF)',
             borderRadius: '0 0 3px 3px'
           }} />
 
@@ -301,17 +301,17 @@ const Testimonials = () => {
                 key={index}
                 style={{
                   padding: isTablet ? '2rem 1rem' : '1.5rem 0.5rem',
-                  background: 'rgba(255, 255, 255, 0.03)',
+                  background: '#FFFFFF',
                   borderRadius: '16px',
-                  border: '1px solid rgba(255, 255, 255, 0.05)',
+                  border: '1px solid #E5E5EA',
                   transition: 'all 0.3s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.background = 'rgba(255, 255, 255, 0.08)'
+                  e.target.style.background = '#F5F5F7'
                   e.target.style.transform = 'translateY(-5px)'
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'rgba(255, 255, 255, 0.03)'
+                  e.target.style.background = '#FFFFFF'
                   e.target.style.transform = 'translateY(0)'
                 }}
               >
@@ -324,15 +324,15 @@ const Testimonials = () => {
                 <div style={{
                   fontSize: isTablet ? '2.5rem' : '2rem',
                   fontWeight: '700',
-                  color: '#2BBEF8',
+                  color: '#0071E3',
                   marginBottom: '0.5rem',
-                  fontFamily: 'Space Grotesk, sans-serif'
+                  fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
                 }}>
                   {stat.number}
                 </div>
                 <div style={{
                   fontSize: isTablet ? '0.9rem' : '0.8rem',
-                  color: 'rgba(255, 255, 255, 0.7)',
+                  color: '#6E6E73',
                   fontWeight: '500'
                 }}>
                   {stat.label}

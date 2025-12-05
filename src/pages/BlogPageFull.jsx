@@ -88,15 +88,15 @@ const BlogPage = () => {
 
   return (
     <div style={{
-      background: 'var(--background-dark)',
-      color: 'var(--text-primary)',
+      background: 'linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 50%, #F5F5F7 100%)',
+      color: '#1D1D1F',
       minHeight: '100vh'
     }}>
       <AnimatedNavbar />
       
       <section id="blog" style={{
         padding: '8rem 0',
-        background: 'var(--background-dark)',
+        background: 'transparent',
         minHeight: '100vh',
         paddingTop: '120px'
       }}>
@@ -113,41 +113,64 @@ const BlogPage = () => {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.75rem',
-            background: 'rgba(43, 190, 248, 0.1)',
-            border: '1px solid rgba(43, 190, 248, 0.2)',
+            background: 'linear-gradient(145deg, rgba(0, 102, 204, 0.1), rgba(0, 153, 255, 0.05))',
+            border: '1px solid rgba(0, 102, 204, 0.3)',
             borderRadius: '50px',
             padding: '0.75rem 1.5rem',
             marginBottom: '2rem',
-            color: 'var(--accent-cyan)',
+            color: '#0066cc',
             fontSize: '0.9rem',
             fontWeight: '600',
-            fontFamily: 'var(--font-mono)'
+            fontFamily: 'Inter, monospace',
+            backdropFilter: 'blur(12px)',
+            boxShadow: '0 4px 20px rgba(0, 102, 204, 0.15)',
+            position: 'relative',
+            overflow: 'hidden'
           }}>
-            <BookOpen size={20} />
-            BLOG & ARTÍCULOS
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: '-100%',
+              width: '60%',
+              height: '100%',
+              background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)'
+            }} />
+            <BookOpen size={20} style={{ filter: 'drop-shadow(0 0 2px rgba(0, 170, 255, 0.5))' }} />
+            <span style={{ position: 'relative', zIndex: 2 }}>BLOG & ARTÍCULOS</span>
           </div>
 
           <h2 style={{
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             fontWeight: '700',
             marginBottom: '1.5rem',
-            color: 'var(--text-primary)',
-            fontFamily: 'var(--font-primary)'
+            color: '#1D1D1F',
+            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
           }}>
             Conocimiento y{' '}
             <span style={{
-              background: 'var(--gradient-primary)',
+              background: 'linear-gradient(90deg, #0055aa 0%, #0088ee 25%, #00aaff 50%, #0088ee 75%, #0055aa 100%)',
               WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent'
+              WebkitTextFillColor: 'transparent',
+              position: 'relative',
+              display: 'inline-block'
             }}>
               experiencias
+              <span style={{
+                position: 'absolute',
+                bottom: '-3px',
+                left: 0,
+                width: '100%',
+                height: '2px',
+                background: 'linear-gradient(90deg, transparent, #00aaff, transparent)',
+                borderRadius: '2px'
+              }} />
             </span>
           </h2>
           
           <p style={{
             fontSize: '1.25rem',
             lineHeight: '1.7',
-            color: 'var(--text-secondary)',
+            color: '#6E6E73',
             maxWidth: '700px',
             margin: '0 auto'
           }}>
@@ -175,25 +198,29 @@ const BlogPage = () => {
               onClick={() => setSelectedCategory(category)}
               style={{
                 padding: '0.75rem 1.5rem',
-                background: selectedCategory === category ? 'var(--gradient-primary)' : 'var(--background-card)',
-                color: selectedCategory === category ? 'white' : 'var(--text-secondary)',
-                border: `1px solid ${selectedCategory === category ? 'transparent' : 'var(--border-subtle)'}`,
-                borderRadius: '50px',
+                background: selectedCategory === category ? 'linear-gradient(135deg, #0066cc, #0099ff)' : 'rgba(255, 255, 255, 0.9)',
+                color: selectedCategory === category ? 'white' : '#6E6E73',
+                border: `1px solid ${selectedCategory === category ? 'transparent' : '#E5E5EA'}`,
+                borderRadius: '980px',
                 fontSize: '0.9rem',
                 fontWeight: '500',
                 cursor: 'pointer',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s ease',
+                backdropFilter: 'blur(10px)',
+                boxShadow: selectedCategory === category 
+                  ? '0 8px 20px rgba(0, 102, 204, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3)' 
+                  : '0 2px 8px rgba(0, 0, 0, 0.04)'
               }}
               onMouseEnter={(e) => {
                 if (selectedCategory !== category) {
-                  e.target.style.background = 'var(--background-glass)'
-                  e.target.style.color = 'var(--text-primary)'
+                  e.target.style.background = 'rgba(255, 255, 255, 0.95)'
+                  e.target.style.color = '#1D1D1F'
                 }
               }}
               onMouseLeave={(e) => {
                 if (selectedCategory !== category) {
-                  e.target.style.background = 'var(--background-card)'
-                  e.target.style.color = 'var(--text-secondary)'
+                  e.target.style.background = 'rgba(255, 255, 255, 0.9)'
+                  e.target.style.color = '#6E6E73'
                 }
               }}
             >
@@ -205,8 +232,8 @@ const BlogPage = () => {
         {/* Blog Posts Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-          gap: '2rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(400px, 100%), 1fr))',
+          gap: '1.5rem',
           marginBottom: '4rem'
         }}>
           {filteredPosts.map((post, index) => (
@@ -218,11 +245,12 @@ const BlogPage = () => {
               viewport={{ once: true }}
               whileHover={{ y: -8 }}
               style={{
-                background: 'var(--background-card)',
-                borderRadius: '1.5rem',
+                background: 'rgba(255, 255, 255, 0.9)',
+                backdropFilter: 'blur(20px)',
+                borderRadius: '20px',
                 overflow: 'hidden',
-                border: '1px solid var(--border-subtle)',
-                boxShadow: '0 10px 30px var(--shadow-soft)',
+                border: '1px solid #E5E5EA',
+                boxShadow: '0 8px 20px rgba(0, 0, 0, 0.04)',
                 transition: 'all 0.3s ease',
                 cursor: 'pointer'
               }}
@@ -249,12 +277,13 @@ const BlogPage = () => {
                   top: '1rem',
                   left: '1rem',
                   padding: '0.5rem 1rem',
-                  background: 'var(--gradient-primary)',
+                  background: 'linear-gradient(135deg, #0066cc, #0099ff)',
+                  boxShadow: '0 4px 12px rgba(0, 102, 204, 0.3)',
                   color: 'white',
                   fontSize: '0.8rem',
                   fontWeight: '600',
                   borderRadius: '50px',
-                  fontFamily: 'var(--font-mono)'
+                  fontFamily: 'Inter, monospace'
                 }}>
                   {post.category}
                 </div>
@@ -268,7 +297,7 @@ const BlogPage = () => {
                   gap: '1rem',
                   marginBottom: '1rem',
                   fontSize: '0.85rem',
-                  color: 'var(--text-muted)'
+                  color: '#6E6E73'
                 }}>
                   <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                     <Calendar size={14} />
@@ -287,15 +316,16 @@ const BlogPage = () => {
                 <h3 style={{
                   fontSize: '1.25rem',
                   fontWeight: '600',
-                  color: 'var(--text-primary)',
+                  color: '#1D1D1F',
                   marginBottom: '1rem',
-                  lineHeight: '1.4'
+                  lineHeight: '1.4',
+                  fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
                 }}>
                   {post.title}
                 </h3>
 
                 <p style={{
-                  color: 'var(--text-secondary)',
+                  color: '#3A3A3C',
                   lineHeight: '1.6',
                   marginBottom: '1.5rem'
                 }}>
@@ -314,8 +344,8 @@ const BlogPage = () => {
                       key={tagIndex}
                       style={{
                         padding: '0.25rem 0.75rem',
-                        background: 'rgba(43, 190, 248, 0.1)',
-                        color: 'var(--accent-cyan)',
+                        background: 'rgba(0, 113, 227, 0.1)',
+                        color: '#0071E3',
                         borderRadius: '50px',
                         fontSize: '0.75rem',
                         fontWeight: '500'
@@ -331,7 +361,7 @@ const BlogPage = () => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.5rem',
-                  color: 'var(--accent-cyan)',
+                  color: '#0071E3',
                   fontSize: '0.9rem',
                   fontWeight: '600',
                   cursor: 'pointer'
@@ -351,38 +381,66 @@ const BlogPage = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
           style={{
-            background: 'var(--gradient-card)',
-            borderRadius: '2rem',
+            background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(240, 245, 255, 0.9))',
+            backdropFilter: 'blur(20px)',
+            borderRadius: '24px',
             padding: '3rem 2rem',
             textAlign: 'center',
-            border: '1px solid var(--border-subtle)'
+            border: '1px solid rgba(0, 102, 204, 0.2)',
+            boxShadow: '0 10px 30px rgba(0, 102, 204, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+            position: 'relative',
+            overflow: 'hidden'
           }}
         >
           <div style={{
+            position: 'absolute',
+            top: 0,
+            right: 0,
+            width: '40px',
+            height: '40px',
+            borderTop: '2px solid rgba(0, 170, 255, 0.3)',
+            borderRight: '2px solid rgba(0, 170, 255, 0.3)',
+            borderTopRightRadius: '24px'
+          }} />
+          <div style={{
             width: '80px',
             height: '80px',
-            background: 'rgba(43, 190, 248, 0.1)',
+            background: 'linear-gradient(135deg, rgba(0, 102, 204, 0.15), rgba(0, 170, 255, 0.25))',
             borderRadius: '50%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            margin: '0 auto 2rem auto'
+            margin: '0 auto 2rem auto',
+            border: '2px solid rgba(0, 136, 238, 0.3)',
+            boxShadow: '0 8px 20px rgba(0, 102, 204, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.5)',
+            position: 'relative'
           }}>
-            <Zap size={40} color="var(--accent-cyan)" />
+            <div style={{
+              position: 'absolute',
+              top: '-8px',
+              left: '-8px',
+              width: '25px',
+              height: '25px',
+              background: 'rgba(255, 255, 255, 0.6)',
+              borderRadius: '50%',
+              filter: 'blur(8px)'
+            }} />
+            <Zap size={40} color="#0066cc" style={{ filter: 'drop-shadow(0 0 4px rgba(0, 170, 255, 0.4))' }} />
           </div>
           
           <h3 style={{
             fontSize: '1.75rem',
             fontWeight: '600',
-            color: 'var(--text-primary)',
-            marginBottom: '1rem'
+            color: '#1D1D1F',
+            marginBottom: '1rem',
+            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
           }}>
             Más contenido próximamente
           </h3>
           
           <p style={{
             fontSize: '1.1rem',
-            color: 'var(--text-secondary)',
+            color: '#6E6E73',
             maxWidth: '500px',
             margin: '0 auto'
           }}>

@@ -12,6 +12,8 @@ import styles from '../styles/ParallaxHero.module.css'
 const ParallaxHero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
+  const [statsIndex, setStatsIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
   const { ref, isVisible } = useViewportAnimation({ threshold: 0.3 })
 
   // Track mouse position for parallax effect (desktop only)
@@ -41,6 +43,27 @@ const ParallaxHero = () => {
       window.removeEventListener('resize', handleResize)
     }
   }, [])
+
+  // Mobile detection and stats carousel
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  useEffect(() => {
+    if (isMobile) {
+      const interval = setInterval(() => {
+        setStatsIndex((prev) => (prev + 1) % stats.length)
+      }, 2500)
+      return () => clearInterval(interval)
+    }
+  }, [isMobile])
 
   // Animation variants for staggered entrance
   const containerVariants = {
@@ -140,7 +163,7 @@ const ParallaxHero = () => {
             {/* Status Badge */}
             <motion.div className={styles.statusBadge} variants={itemVariants} style={{ marginTop: '1rem' }}>
               <div className={styles.statusDot} style={{ background: '#22C55E', boxShadow: '0 0 10px #22C55E, 0 0 20px rgba(34, 197, 94, 0.3)' }} />
-              <span style={{ color: '#6B7280' }}>Disponible para proyectos</span>
+              <span style={{ color: '#1D1D1F' }}>Disponible para proyectos</span>
             </motion.div>
 
             {/* Main Heading */}
@@ -271,21 +294,126 @@ const ParallaxHero = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 1 }}
+          style={{
+            position: 'relative',
+            overflow: isMobile ? 'hidden' : 'visible',
+            paddingLeft: isMobile ? '16px' : '0',
+            paddingRight: isMobile ? '16px' : '0'
+          }}
         >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              className={styles.statCard}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 1.2 + index * 0.1 }}
-              whileHover={{ y: -5, scale: 1.02 }}
-            >
-              <div className={styles.statIcon}>{stat.icon}</div>
-              <div className={styles.statNumber}>{stat.number}</div>
-              <div className={styles.statLabel}>{stat.label}</div>
-            </motion.div>
-          ))}
+          {isMobile ? (
+            // Mobile Carousel - Single Card Display
+            <>
+              <div style={{
+                paddingTop: '24px',
+                paddingBottom: '24px',
+                display: 'flex',
+                justifyContent: 'center'
+              }}>
+                <motion.div
+                  key={statsIndex}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  style={{
+                    background: '#FFFFFF',
+                    borderRadius: '20px',
+                    border: '1px solid #E5E5EA',
+                    padding: '24px 16px',
+                    textAlign: 'center',
+                    width: '100%',
+                    maxWidth: '340px',
+                    minHeight: 'auto',
+                    height: 'auto',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.08)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '12px',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <div style={{
+                    fontSize: '2rem',
+                    marginBottom: '8px'
+                  }}>
+                    {stats[statsIndex].icon}
+                  </div>
+                  <div style={{
+                    fontSize: '2.5rem',
+                    fontWeight: '600',
+                    color: '#0071E3',
+                    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                    lineHeight: '1.1'
+                  }}>
+                    {stats[statsIndex].number}
+                  </div>
+                  <div style={{
+                    fontSize: '0.875rem',
+                    color: '#6E6E73',
+                    fontWeight: '400',
+                    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                    lineHeight: '1.3',
+                    textAlign: 'center'
+                  }}>
+                    {stats[statsIndex].label}
+                  </div>
+                </motion.div>
+              </div>
+              
+              {/* Mobile Indicators */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                gap: '12px',
+                marginTop: '16px',
+                paddingBottom: '8px'
+              }}>
+                {stats.map((_, index) => (
+                  <motion.button
+                    key={index}
+                    onClick={() => setStatsIndex(index)}
+                    animate={{
+                      scale: statsIndex === index ? 1.2 : 1,
+                      backgroundColor: statsIndex === index ? '#0071E3' : '#E5E5EA'
+                    }}
+                    whileHover={{ scale: 1.3 }}
+                    whileTap={{ scale: 0.9 }}
+                    style={{
+                      width: '12px',
+                      height: '12px',
+                      borderRadius: '50%',
+                      border: 'none',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: statsIndex === index 
+                        ? '0 0 8px rgba(0, 113, 227, 0.3)' 
+                        : 'none'
+                    }}
+                  />
+                ))}
+              </div>
+            </>
+          ) : (
+            // Desktop Grid
+            stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                className={styles.statCard}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 1.2 + index * 0.1 }}
+                whileHover={{ y: -5, scale: 1.02 }}
+              >
+                <div className={styles.statIcon}>{stat.icon}</div>
+                <div className={styles.statNumber}>{stat.number}</div>
+                <div className={styles.statLabel}>{stat.label}</div>
+              </motion.div>
+            ))
+          )}
         </motion.div>
       </div>
 

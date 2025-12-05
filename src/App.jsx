@@ -38,7 +38,7 @@ class ErrorBoundary extends React.Component {
           justifyContent: 'center',
           alignItems: 'center',
           height: '200px',
-          color: 'var(--text-secondary)',
+          color: '#6E6E73',
           flexDirection: 'column',
           gap: '1rem'
         }}>
@@ -47,7 +47,7 @@ class ErrorBoundary extends React.Component {
             onClick={() => this.setState({ hasError: false })}
             style={{
               padding: '0.5rem 1rem',
-              background: 'var(--primary-blue)',
+              background: '#0071E3',
               color: 'white',
               border: 'none',
               borderRadius: '8px',
@@ -70,14 +70,14 @@ const LoadingSpinner = () => (
     justifyContent: 'center',
     alignItems: 'center',
     height: '200px',
-    color: 'var(--text-secondary)'
+    color: '#6E6E73'
   }}>
     <motion.div
       style={{
         width: '40px',
         height: '40px',
         border: '3px solid rgba(255,255,255,0.2)',
-        borderTop: '3px solid var(--accent-cyan)',
+        borderTop: '3px solid #0071E3',
         borderRadius: '50%'
       }}
       animate={{ rotate: 360 }}
@@ -126,8 +126,8 @@ function App() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       style={{
-        background: 'var(--background-dark)',
-        color: 'var(--text-primary)',
+        background: '#FFFFFF',
+        color: '#1D1D1F',
         minHeight: '100vh'
       }}
     >

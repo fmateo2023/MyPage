@@ -84,7 +84,7 @@ const Services = () => {
   return (
     <section id="services" style={{
       padding: '8rem 0',
-      background: 'var(--background-dark)',
+      background: '#F5F5F7',
       position: 'relative',
       overflow: 'hidden'
     }}>
@@ -137,7 +137,7 @@ const Services = () => {
           <p style={{
             fontSize: '1.25rem',
             lineHeight: '1.7',
-            color: 'var(--text-secondary)',
+            color: '#6E6E73',
             maxWidth: '700px',
             margin: '0 auto'
           }}>
@@ -149,21 +149,21 @@ const Services = () => {
         {/* Main Services Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-          gap: '2rem',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(350px, 100%), 1fr))',
+          gap: '1.5rem',
           marginBottom: '4rem'
         }}>
           {services.map((service, index) => (
             <div
               key={service.id}
               style={{
-                background: 'var(--gradient-card)',
+                background: '#FFFFFF',
                 borderRadius: '1.5rem',
                 padding: '2rem',
-                border: '1px solid var(--border-subtle)',
+                border: '1px solid #E5E5EA',
                 boxShadow: hoveredService === service.id 
-                  ? '0 25px 50px var(--shadow-strong)' 
-                  : '0 4px 20px var(--shadow-soft)',
+                  ? '0 14px 30px rgba(0, 0, 0, 0.06)' 
+                  : '0 8px 20px rgba(0, 0, 0, 0.04)',
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 transform: hoveredService === service.id ? 'translateY(-8px)' : 'translateY(0)',
                 cursor: 'pointer',
@@ -224,7 +224,7 @@ const Services = () => {
 
               {/* Description */}
               <p style={{
-                color: 'var(--text-secondary)',
+                color: '#6E6E73',
                 lineHeight: '1.6',
                 marginBottom: '2rem',
                 fontSize: '1rem'
@@ -305,11 +305,13 @@ const Services = () => {
 
         {/* Additional Services */}
         <div style={{
-          background: 'var(--background-card)',
-          borderRadius: '2rem',
+          background: 'rgba(255, 255, 255, 0.9)',
+          backdropFilter: 'blur(20px)',
+          borderRadius: '24px',
           padding: '3rem 2rem',
           marginBottom: '4rem',
-          border: '1px solid var(--border-subtle)'
+          border: '1px solid #E5E5EA',
+          boxShadow: '0 8px 20px rgba(0, 0, 0, 0.04)'
         }}>
           <div style={{
             textAlign: 'center',
@@ -341,20 +343,22 @@ const Services = () => {
               <div
                 key={index}
                 style={{
-                  background: 'var(--background-dark)',
+                  background: 'rgba(255, 255, 255, 0.9)',
+                  backdropFilter: 'blur(10px)',
                   padding: '1.5rem',
-                  borderRadius: '1rem',
-                  border: '1px solid var(--border-subtle)',
+                  borderRadius: '16px',
+                  border: '1px solid #E5E5EA',
+                  boxShadow: '0 8px 20px rgba(0, 0, 0, 0.04)',
                   transition: 'all 0.3s ease',
                   cursor: 'pointer'
                 }}
                 onMouseEnter={(e) => {
                   e.target.style.transform = 'translateY(-4px)'
-                  e.target.style.boxShadow = '0 10px 25px var(--shadow-medium)'
+                  e.target.style.boxShadow = '0 14px 30px rgba(0, 0, 0, 0.06)'
                 }}
                 onMouseLeave={(e) => {
                   e.target.style.transform = 'translateY(0)'
-                  e.target.style.boxShadow = 'none'
+                  e.target.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.04)'
                 }}
               >
                 <div style={{
@@ -366,12 +370,12 @@ const Services = () => {
                   <div style={{
                     width: '50px',
                     height: '50px',
-                    background: 'rgba(0, 119, 255, 0.1)',
+                    background: 'rgba(43, 190, 248, 0.1)',
                     borderRadius: '12px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#0077FF'
+                    color: '#2BBEF8'
                   }}>
                     {service.icon}
                   </div>
@@ -379,14 +383,14 @@ const Services = () => {
                     <h4 style={{
                       fontSize: '1.1rem',
                       fontWeight: '600',
-                      color: 'var(--text-primary)',
+                      color: '#1D1D1F',
                       marginBottom: '0.25rem'
                     }}>
                       {service.title}
                     </h4>
                     <p style={{
                       fontSize: '0.9rem',
-                      color: 'var(--text-secondary)',
+                      color: '#3A3A3C',
                       margin: 0
                     }}>
                       {service.description}

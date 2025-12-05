@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { 
   Calendar, 
@@ -15,6 +15,14 @@ import {
 
 const Experience = () => {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // Experiencia laboral profesional
   const workExperience = [
@@ -84,235 +92,380 @@ const Experience = () => {
 
   return (
     <section id="experience" style={{
-      padding: '8rem 0',
-      background: 'var(--background-dark)',
+      paddingTop: isMobile ? '80px' : '8rem',
+      paddingBottom: isMobile ? '60px' : '8rem',
+      marginTop: isMobile ? '0' : '0',
+      background: 'linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 50%, #F8F9FA 100%)',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      width: '100%',
+      maxWidth: '100vw',
+      borderTop: 'none',
+      boxShadow: 'none'
     }}>
-      {/* Background Pattern */}
+      {/* Animated Background */}
       <div style={{
         position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundImage: `
-          radial-gradient(circle at 30% 70%, rgba(43, 190, 248, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 70% 30%, rgba(0, 119, 255, 0.1) 0%, transparent 50%)
-        `,
-        pointerEvents: 'none'
-      }} />
+        inset: 0,
+        overflow: 'hidden',
+        zIndex: 1
+      }}>
+        <div style={{
+          position: 'absolute',
+          top: '20%',
+          left: '20%',
+          width: '300px',
+          height: '300px',
+          background: 'radial-gradient(circle, rgba(0, 113, 227, 0.15) 0%, rgba(41, 151, 255, 0.1) 50%, transparent 70%)',
+          borderRadius: '50%',
+          filter: 'blur(40px)'
+        }} />
+        <div style={{
+          position: 'absolute',
+          bottom: '20%',
+          right: '20%',
+          width: '400px',
+          height: '400px',
+          background: 'radial-gradient(circle, rgba(10, 132, 255, 0.15) 0%, rgba(0, 113, 227, 0.1) 50%, transparent 70%)',
+          borderRadius: '50%',
+          filter: 'blur(60px)'
+        }} />
+      </div>
 
-      <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+      <div style={{ 
+        position: 'relative', 
+        zIndex: 2,
+        padding: isMobile ? '0 1rem' : '0 2rem',
+        maxWidth: isMobile ? '100%' : '1200px',
+        margin: '0 auto',
+        width: '100%',
+        isolation: 'isolate'
+      }}>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          style={{ textAlign: 'center', marginBottom: '4rem' }}
+          style={{ 
+            textAlign: 'center', 
+            marginBottom: isMobile ? '48px' : '5rem',
+            padding: '0',
+            width: '100%',
+            maxWidth: '100%'
+          }}
         >
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.75rem',
-            background: 'rgba(43, 190, 248, 0.1)',
-            border: '1px solid rgba(43, 190, 248, 0.2)',
+            background: '#F5F5F7',
+            border: '1px solid #E5E5EA',
             borderRadius: '50px',
-            padding: '0.75rem 1.5rem',
-            marginBottom: '2rem',
-            color: 'var(--accent-cyan)',
-            fontSize: '0.9rem',
+            padding: isMobile ? '0.75rem 1.5rem' : '1rem 2rem',
+            marginBottom: isMobile ? '2rem' : '3rem',
+            color: '#0071E3',
+            fontSize: isMobile ? '0.875rem' : '1rem',
             fontWeight: '600',
-            fontFamily: 'var(--font-mono)'
+            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+            backdropFilter: 'blur(10px)'
           }}>
-            <Award size={20} />
-            PARTICIPACIONES & RECONOCIMIENTOS
+            <Code size={isMobile ? 18 : 20} />
+            EXPERIENCIA
           </div>
 
           <h2 style={{
-            fontSize: 'clamp(2rem, 4vw, 3rem)',
+            fontSize: isMobile ? 'clamp(1.75rem, 8vw, 2.25rem)' : 'clamp(2rem, 4vw, 3rem)',
             fontWeight: '700',
             marginBottom: '1.5rem',
-            color: 'var(--text-primary)',
-            fontFamily: 'var(--font-primary)'
+            color: '#1D1D1F',
+            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+            lineHeight: '1.1',
+            padding: '0',
+            width: '100%',
+            maxWidth: '100%',
+            letterSpacing: '-0.02em'
           }}>
-            Mi trayectoria{' '}
+            Transformando ideas en{' '}
             <span style={{
-              background: 'var(--gradient-primary)',
+              background: 'linear-gradient(90deg, #0071E3, #2997FF)',
               WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent'
+              WebkitTextFillColor: 'transparent',
+              display: 'inline-block'
             }}>
-              profesional
+              soluciones digitales
             </span>
           </h2>
           
           <p style={{
-            fontSize: '1.25rem',
+            fontSize: isMobile ? 'clamp(1rem, 4vw, 1.125rem)' : '1.25rem',
             lineHeight: '1.7',
-            color: 'var(--text-secondary)',
-            maxWidth: '700px',
-            margin: '0 auto'
+            color: '#6E6E73',
+            maxWidth: isMobile ? '100%' : '800px',
+            margin: '0 auto 2rem auto',
+            padding: '0 8px',
+            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+            fontWeight: '400',
+            textAlign: 'center'
           }}>
-            Mi experiencia profesional en el desarrollo de software y consultoría tecnológica, 
-            creando soluciones innovadoras para empresas de diversos sectores.
+            Soy Francisco Javier Mateo Hernández, líder en el área de tecnología y desarrollo de software especializado en crear{' '}
+            <span style={{ color: '#0071E3', fontWeight: '600' }}>soluciones tecnológicas robustas</span>{' '}
+            que transforman la manera en que las empresas operan y crecen.
+          </p>
+          
+          <p style={{
+            fontSize: isMobile ? 'clamp(0.95rem, 3.5vw, 1rem)' : '1.125rem',
+            lineHeight: '1.6',
+            color: '#6E6E73',
+            maxWidth: isMobile ? '100%' : '700px',
+            margin: '0 auto',
+            padding: '0 8px',
+            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+            fontWeight: '400',
+            textAlign: 'center'
+          }}>
+            Con más de 9 años de experiencia, he trabajado en proyectos que van desde sistemas de gestión empresarial hasta plataformas de e-commerce y APIs personalizadas, siempre enfocado en generar valor real para cada organización.
           </p>
         </motion.div>
 
-        {/* Premium Timeline */}
-        <div style={{ maxWidth: '1000px', margin: '0 auto', marginBottom: '6rem' }}>
-          <div className="timeline">
+        {/* Experience Cards */}
+        <div style={{ 
+          width: '100%', 
+          maxWidth: '100%', 
+          margin: '0 auto', 
+          marginBottom: isMobile ? '32px' : '6rem'
+        }}>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '20px',
+            width: '100%',
+            maxWidth: '100%',
+            overflow: 'visible'
+          }}>
             {workExperience.map((experience, index) => (
               <motion.div
                 key={index}
-                className={`timeline-item ${activeIndex >= index ? 'animate' : ''}`}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                onViewportEnter={() => setActiveIndex(index)}
+                style={{
+                  width: '100%',
+                  maxWidth: '100%',
+                  minHeight: 'auto',
+                  height: 'auto',
+                  overflow: 'visible'
+                }}
               >
-                <div className="timeline-dot" style={{ background: experience.color }} />
-                
-                <motion.div
-                  whileHover={{ y: -5 }}
-                  style={{
-                    background: 'var(--background-card)',
-                    borderRadius: '1.5rem',
-                    padding: '2rem',
-                    border: '1px solid var(--border-subtle)',
-                    boxShadow: '0 10px 30px var(--shadow-soft)',
-                    transition: 'all 0.3s ease',
-                    cursor: 'pointer'
-                  }}
-                >
-                  {/* Header */}
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: '1.5rem',
-                    marginBottom: '1.5rem'
-                  }}>
-                    <div style={{
-                      width: '70px',
-                      height: '70px',
-                      background: `${experience.color}15`,
+                <div style={{
+                  width: '100%',
+                  maxWidth: '100%'
+                }}>
+                  <motion.div
+                    whileHover={{ y: isMobile ? -2 : -4, scale: isMobile ? 1.005 : 1.01 }}
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.9)',
+                      backdropFilter: 'blur(20px)',
                       borderRadius: '20px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: experience.color,
-                      flexShrink: 0
-                    }}>
-                      {experience.icon}
-                    </div>
-                    
-                    <div style={{ flex: 1 }}>
-                      <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '1rem',
-                        marginBottom: '0.75rem',
-                        flexWrap: 'wrap'
-                      }}>
-                        <span style={{
-                          padding: '0.5rem 1rem',
-                          background: `${experience.color}15`,
-                          color: experience.color,
-                          fontSize: '0.8rem',
-                          fontWeight: '600',
-                          borderRadius: '50px',
-                          fontFamily: 'var(--font-mono)'
-                        }}>
-                          {experience.type}
-                        </span>
-                        <span style={{
-                          fontSize: '0.9rem',
-                          color: 'var(--text-muted)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.5rem'
-                        }}>
-                          <Calendar size={16} />
-                          {experience.period}
-                        </span>
-                      </div>
-                      
-                      <h3 style={{
-                        fontSize: '1.5rem',
-                        fontWeight: '600',
-                        color: 'var(--text-primary)',
-                        marginBottom: '0.5rem',
-                        lineHeight: '1.3'
-                      }}>
-                        {experience.title}
-                      </h3>
-                      
-                      <div style={{
-                        color: experience.color,
-                        fontWeight: '600',
-                        marginBottom: '0.5rem',
-                        fontSize: '1.1rem'
-                      }}>
-                        {experience.company}
-                      </div>
-                      
-                      <div style={{
-                        fontSize: '0.9rem',
-                        color: 'var(--text-muted)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.5rem'
-                      }}>
-                        <MapPin size={16} />
-                        {experience.location}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Description */}
-                  <p style={{
-                    color: 'var(--text-secondary)',
-                    lineHeight: '1.7',
-                    fontSize: '1rem',
-                    marginBottom: '1.5rem'
-                  }}>
-                    {experience.description}
-                  </p>
-
-                  {/* Technologies */}
-                  <div>
-                    <h5 style={{
-                      fontSize: '0.9rem',
-                      fontWeight: '600',
-                      color: 'var(--text-primary)',
-                      marginBottom: '0.75rem'
-                    }}>
-                      Tecnologías utilizadas:
-                    </h5>
+                      padding: isMobile ? '1.5rem' : '2rem',
+                      border: '1px solid #E5E5EA',
+                      boxShadow: '0 8px 20px rgba(0, 0, 0, 0.04)',
+                      transition: 'all 0.3s ease',
+                      cursor: 'pointer',
+                      position: 'relative',
+                      overflow: 'visible',
+                      width: '100%',
+                      maxWidth: '100%',
+                      minHeight: 'auto',
+                      height: 'auto',
+                      transform: 'none'
+                    }}
+                  >
+                    {/* Subtle Background Glow */}
                     <div style={{
-                      display: 'flex',
-                      flexWrap: 'wrap',
-                      gap: '0.5rem'
-                    }}>
-                      {experience.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          style={{
-                            padding: '0.25rem 0.75rem',
-                            background: `${experience.color}15`,
+                      position: 'absolute',
+                      top: '-50%',
+                      right: '-50%',
+                      width: '200px',
+                      height: '200px',
+                      background: `radial-gradient(circle, ${experience.color}08 0%, transparent 70%)`,
+                      pointerEvents: 'none'
+                    }} />
+                    
+                    <div style={{ position: 'relative', zIndex: 2 }}>
+                      {/* Header */}
+                      <div style={{
+                        display: 'flex',
+                        flexDirection: isMobile ? 'column' : 'row',
+                        alignItems: isMobile ? 'center' : 'flex-start',
+                        gap: '16px',
+                        marginBottom: '20px',
+                        textAlign: isMobile ? 'center' : 'left',
+                        width: '100%'
+                      }}>
+                        <div style={{
+                            width: isMobile ? '50px' : '60px',
+                            height: isMobile ? '50px' : '60px',
+                            background: `linear-gradient(135deg, ${experience.color}20, ${experience.color}30)`,
+                            borderRadius: '16px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
                             color: experience.color,
-                            borderRadius: '50px',
-                            fontSize: '0.8rem',
-                            fontWeight: '500'
+                            flexShrink: 0,
+                            border: `1px solid ${experience.color}30`,
+                            maxWidth: '100%',
+                            objectFit: 'contain'
                           }}
                         >
-                          {tech}
-                        </span>
-                      ))}
+                          {experience.icon}
+                        </div>
+                        
+                        <div style={{ 
+                          flex: 1, 
+                          width: '100%', 
+                          maxWidth: '100%',
+                          textAlign: isMobile ? 'center' : 'left'
+                        }}>
+                          <div style={{
+                            display: 'flex',
+                            flexDirection: isMobile ? 'column' : 'row',
+                            alignItems: isMobile ? 'center' : 'flex-start',
+                            gap: isMobile ? '8px' : '1rem',
+                            marginBottom: '12px',
+                            flexWrap: 'wrap',
+                            justifyContent: isMobile ? 'center' : 'flex-start'
+                          }}>
+                            <span style={{
+                              padding: '6px 12px',
+                              background: `${experience.color}15`,
+                              color: experience.color,
+                              fontSize: '0.8rem',
+                              fontWeight: '600',
+                              borderRadius: '20px',
+                              fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                              border: `1px solid ${experience.color}25`,
+                              whiteSpace: 'normal',
+                              wordBreak: 'break-word'
+                            }}>
+                              {experience.type}
+                            </span>
+                            <span style={{
+                              fontSize: '0.85rem',
+                              color: '#6E6E73',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '4px',
+                              fontWeight: '400',
+                              opacity: '0.8',
+                              whiteSpace: 'normal',
+                              wordBreak: 'break-word'
+                            }}>
+                              <Calendar size={16} />
+                              {experience.period}
+                            </span>
+                          </div>
+                          
+                          <h3 style={{
+                            fontSize: isMobile ? 'clamp(1.1rem, 5vw, 1.25rem)' : '1.4rem',
+                            fontWeight: '600',
+                            color: '#1D1D1F',
+                            marginBottom: '8px',
+                            lineHeight: '1.3',
+                            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                            whiteSpace: 'normal',
+                            wordBreak: 'break-word',
+                            letterSpacing: '-0.01em'
+                          }}>
+                            {experience.title}
+                          </h3>
+                          
+                          <div style={{
+                            color: experience.color,
+                            fontWeight: '600',
+                            marginBottom: '8px',
+                            fontSize: isMobile ? '1rem' : '1.1rem',
+                            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                            whiteSpace: 'normal',
+                            wordBreak: 'break-word'
+                          }}>
+                            {experience.company}
+                          </div>
+                          
+                          <div style={{
+                            fontSize: '0.85rem',
+                            color: '#6E6E73',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '4px',
+                            fontWeight: '400',
+                            opacity: '0.8',
+                            whiteSpace: 'normal',
+                            wordBreak: 'break-word'
+                          }}>
+                            <MapPin size={16} />
+                            {experience.location}
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Description */}
+                      <p style={{
+                        color: '#3A3A3C',
+                        lineHeight: '1.5',
+                        fontSize: isMobile ? '0.9rem' : '1rem',
+                        marginBottom: '16px',
+                        fontWeight: '400',
+                        fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                        opacity: '0.8',
+                        whiteSpace: 'normal',
+                        wordBreak: 'break-word'
+                      }}>
+                        {experience.description}
+                      </p>
+
+                      {/* Technologies */}
+                      <div>
+                        <h5 style={{
+                          fontSize: '0.9rem',
+                          fontWeight: '600',
+                          color: '#1D1D1F',
+                          marginBottom: '12px',
+                          fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
+                        }}>
+                          Tecnologías utilizadas:
+                        </h5>
+                        <div style={{
+                          display: 'flex',
+                          flexWrap: 'wrap',
+                          gap: '8px',
+                          justifyContent: isMobile ? 'center' : 'flex-start'
+                        }}>
+                          {experience.technologies.map((tech, techIndex) => (
+                            <span
+                              key={techIndex}
+                              style={{
+                                padding: '4px 8px',
+                                background: `${experience.color}15`,
+                                color: experience.color,
+                                borderRadius: '12px',
+                                fontSize: '0.75rem',
+                                fontWeight: '500',
+                                border: `1px solid ${experience.color}20`,
+                                fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                                whiteSpace: 'normal',
+                                wordBreak: 'break-word'
+                              }}
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -325,49 +478,56 @@ const Experience = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
           style={{
-            background: 'var(--gradient-card)',
-            borderRadius: '2rem',
-            padding: '3rem 2rem',
-            border: '1px solid var(--border-subtle)',
+            background: 'rgba(255, 255, 255, 0.6)',
+            backdropFilter: 'blur(20px)',
+            borderRadius: '20px',
+            padding: '20px',
+            border: '1px solid #e5e5e5',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
             position: 'relative',
-            overflow: 'hidden'
+            overflow: 'visible',
+            margin: '0',
+            width: '100%',
+            maxWidth: '100%',
+            minHeight: 'auto',
+            height: 'auto'
           }}
         >
-          {/* Background Glow */}
-          <div style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '300px',
-            height: '300px',
-            background: 'radial-gradient(circle, rgba(43, 190, 248, 0.1) 0%, transparent 70%)',
-            pointerEvents: 'none'
-          }} />
-
           <div style={{ position: 'relative', zIndex: 10 }}>
-            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <div style={{ 
+              textAlign: 'center', 
+              marginBottom: '24px',
+              width: '100%'
+            }}>
               <h3 style={{
-                fontSize: '2rem',
+                fontSize: isMobile ? '1.4rem' : '1.8rem',
                 fontWeight: '600',
-                color: 'var(--text-primary)',
-                marginBottom: '1rem',
-                fontFamily: 'var(--font-primary)'
+                color: '#1D1D1F',
+                marginBottom: '12px',
+                fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
               }}>
                 Impacto en números
               </h3>
               <p style={{
-                fontSize: '1.1rem',
-                color: 'var(--text-secondary)'
+                fontSize: isMobile ? '0.9rem' : '1rem',
+                color: '#6E6E73',
+                opacity: '0.8',
+                padding: '0',
+                fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                fontWeight: '400'
               }}>
-                Resultados de mi participación en la comunidad tecnológica
+                Resultados de mi trayectoria profesional
               </p>
             </div>
 
             <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '2rem'
+              display: 'flex',
+              flexDirection: isMobile ? 'column' : 'row',
+              gap: '16px',
+              width: '100%',
+              maxWidth: '100%',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap'
             }}>
               {stats.map((stat, index) => (
                 <motion.div
@@ -379,39 +539,54 @@ const Experience = () => {
                   whileHover={{ scale: 1.05 }}
                   style={{
                     textAlign: 'center',
-                    padding: '2rem 1rem',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    borderRadius: '1.5rem',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    transition: 'all 0.3s ease'
+                    padding: '16px',
+                    background: 'rgba(255, 255, 255, 0.6)',
+                    backdropFilter: 'blur(20px)',
+                    borderRadius: '16px',
+                    border: '1px solid #e5e5e5',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                    transition: 'all 0.3s ease',
+                    flex: isMobile ? '1' : '1 1 calc(25% - 12px)',
+                    minWidth: isMobile ? '100%' : '150px',
+                    maxWidth: '100%',
+                    width: '100%',
+                    minHeight: 'auto',
+                    height: 'auto'
                   }}
                 >
                   <div style={{
-                    width: '60px',
-                    height: '60px',
-                    background: 'rgba(43, 190, 248, 0.1)',
-                    borderRadius: '20px',
+                    width: isMobile ? '40px' : '50px',
+                    height: isMobile ? '40px' : '50px',
+                    background: 'rgba(0, 113, 227, 0.15)',
+                    borderRadius: '12px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: 'var(--accent-cyan)',
-                    margin: '0 auto 1rem auto'
+                    color: '#0071E3',
+                    margin: '0 auto 12px auto',
+                    maxWidth: '100%',
+                    objectFit: 'contain'
                   }}>
                     {stat.icon}
                   </div>
                   <div style={{
-                    fontSize: '3rem',
-                    fontWeight: '700',
-                    color: 'var(--text-primary)',
-                    marginBottom: '0.5rem',
-                    fontFamily: 'var(--font-primary)'
+                    fontSize: isMobile ? '1.8rem' : '2.2rem',
+                    fontWeight: '600',
+                    color: '#1D1D1F',
+                    marginBottom: '4px',
+                    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
                   }}>
                     {stat.number}
                   </div>
                   <div style={{
-                    fontSize: '0.9rem',
-                    color: 'var(--text-muted)',
-                    fontWeight: '500'
+                    fontSize: isMobile ? '0.75rem' : '0.85rem',
+                    color: '#6E6E73',
+                    fontWeight: '400',
+                    lineHeight: '1.3',
+                    opacity: '0.8',
+                    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+                    whiteSpace: 'normal',
+                    wordBreak: 'break-word'
                   }}>
                     {stat.label}
                   </div>

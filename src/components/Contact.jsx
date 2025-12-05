@@ -123,27 +123,29 @@ ${formData.name}
   const inputStyle = {
     width: '100%',
     padding: '1rem',
-    background: 'var(--background-dark)',
-    border: '1px solid var(--border-subtle)',
+    background: '#FFFFFF',
+    border: '1px solid #E5E5EA',
     borderRadius: '12px',
-    color: 'var(--text-primary)',
+    color: '#1D1D1F',
     fontSize: '1rem',
-    transition: 'all 0.3s ease',
-    fontFamily: 'var(--font-body)'
+    transition: 'all 0.2s ease',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+    outline: 'none'
   }
 
   const labelStyle = {
     display: 'block',
     fontSize: '0.9rem',
     fontWeight: '600',
-    color: 'var(--text-primary)',
-    marginBottom: '0.5rem'
+    color: '#1D1D1F',
+    marginBottom: '0.5rem',
+    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
   }
 
   return (
     <section id="contact" style={{
       padding: '8rem 0',
-      background: 'var(--background-dark)',
+      background: '#F5F5F7',
       position: 'relative',
       overflow: 'hidden'
     }}>
@@ -179,7 +181,7 @@ ${formData.name}
             borderRadius: '50px',
             padding: '0.75rem 1.5rem',
             marginBottom: '2rem',
-            color: 'var(--accent-cyan)',
+            color: '#0071E3',
             fontSize: '0.9rem',
             fontWeight: '600',
             fontFamily: 'var(--font-mono)'
@@ -192,12 +194,12 @@ ${formData.name}
             fontSize: 'clamp(2rem, 4vw, 3rem)',
             fontWeight: '700',
             marginBottom: '1.5rem',
-            color: 'var(--text-primary)',
-            fontFamily: 'var(--font-primary)'
+            color: '#1D1D1F',
+            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
           }}>
             Transformemos tu{' '}
             <span style={{
-              background: 'var(--gradient-primary)',
+              background: 'linear-gradient(90deg, #0071E3, #2997FF)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
             }}>
@@ -208,7 +210,7 @@ ${formData.name}
           <p style={{
             fontSize: '1.25rem',
             lineHeight: '1.7',
-            color: 'var(--text-secondary)',
+            color: '#6E6E73',
             maxWidth: '700px',
             margin: '0 auto'
           }}>
@@ -231,11 +233,11 @@ ${formData.name}
             viewport={{ once: true }}
           >
             <div style={{
-              background: 'var(--background-card)',
+              background: '#FFFFFF',
               borderRadius: '2rem',
               padding: '3rem',
-              border: '1px solid var(--border-subtle)',
-              boxShadow: '0 20px 40px var(--shadow-soft)'
+              border: '1px solid #E5E5EA',
+              boxShadow: '0 8px 20px rgba(0, 0, 0, 0.04)'
             }}>
               <div style={{
                 display: 'flex',
@@ -251,7 +253,7 @@ ${formData.name}
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'var(--accent-cyan)'
+                  color: '#0071E3'
                 }}>
                   <Send size={24} />
                 </div>
@@ -292,12 +294,14 @@ ${formData.name}
                       style={inputStyle}
                       placeholder="Tu nombre completo"
                       onFocus={(e) => {
-                        e.target.style.borderColor = 'var(--primary-blue)'
-                        e.target.style.boxShadow = '0 0 0 3px rgba(0, 119, 255, 0.1)'
+                        e.target.style.borderColor = '#0071E3'
+                        e.target.style.boxShadow = '0 0 0 3px rgba(0, 113, 227, 0.1)'
+                        e.target.style.transform = 'translateY(-1px)'
                       }}
                       onBlur={(e) => {
-                        e.target.style.borderColor = 'var(--border-subtle)'
+                        e.target.style.borderColor = '#E5E5EA'
                         e.target.style.boxShadow = 'none'
+                        e.target.style.transform = 'translateY(0)'
                       }}
                     />
                   </div>
@@ -312,12 +316,14 @@ ${formData.name}
                       style={inputStyle}
                       placeholder="tu@email.com"
                       onFocus={(e) => {
-                        e.target.style.borderColor = 'var(--primary-blue)'
-                        e.target.style.boxShadow = '0 0 0 3px rgba(0, 119, 255, 0.1)'
+                        e.target.style.borderColor = '#0071E3'
+                        e.target.style.boxShadow = '0 0 0 3px rgba(0, 113, 227, 0.1)'
+                        e.target.style.transform = 'translateY(-1px)'
                       }}
                       onBlur={(e) => {
-                        e.target.style.borderColor = 'var(--border-subtle)'
+                        e.target.style.borderColor = '#E5E5EA'
                         e.target.style.boxShadow = 'none'
+                        e.target.style.transform = 'translateY(0)'
                       }}
                     />
                   </div>
@@ -334,12 +340,14 @@ ${formData.name}
                     style={inputStyle}
                     placeholder="Nombre de tu empresa (opcional)"
                     onFocus={(e) => {
-                      e.target.style.borderColor = 'var(--primary-blue)'
-                      e.target.style.boxShadow = '0 0 0 3px rgba(0, 119, 255, 0.1)'
+                      e.target.style.borderColor = '#0071E3'
+                      e.target.style.boxShadow = '0 0 0 3px rgba(0, 113, 227, 0.1)'
+                      e.target.style.transform = 'translateY(-1px)'
                     }}
                     onBlur={(e) => {
-                      e.target.style.borderColor = 'var(--border-subtle)'
+                      e.target.style.borderColor = '#E5E5EA'
                       e.target.style.boxShadow = 'none'
+                      e.target.style.transform = 'translateY(0)'
                     }}
                   />
                 </div>
@@ -358,12 +366,14 @@ ${formData.name}
                       onChange={handleInputChange}
                       style={inputStyle}
                       onFocus={(e) => {
-                        e.target.style.borderColor = 'var(--primary-blue)'
-                        e.target.style.boxShadow = '0 0 0 3px rgba(0, 119, 255, 0.1)'
+                        e.target.style.borderColor = '#0071E3'
+                        e.target.style.boxShadow = '0 0 0 3px rgba(0, 113, 227, 0.1)'
+                        e.target.style.transform = 'translateY(-1px)'
                       }}
                       onBlur={(e) => {
-                        e.target.style.borderColor = 'var(--border-subtle)'
+                        e.target.style.borderColor = '#E5E5EA'
                         e.target.style.boxShadow = 'none'
+                        e.target.style.transform = 'translateY(0)'
                       }}
                     >
                       <option value="">Selecciona una opción</option>
@@ -380,12 +390,14 @@ ${formData.name}
                       onChange={handleInputChange}
                       style={inputStyle}
                       onFocus={(e) => {
-                        e.target.style.borderColor = 'var(--primary-blue)'
-                        e.target.style.boxShadow = '0 0 0 3px rgba(0, 119, 255, 0.1)'
+                        e.target.style.borderColor = '#0071E3'
+                        e.target.style.boxShadow = '0 0 0 3px rgba(0, 113, 227, 0.1)'
+                        e.target.style.transform = 'translateY(-1px)'
                       }}
                       onBlur={(e) => {
-                        e.target.style.borderColor = 'var(--border-subtle)'
+                        e.target.style.borderColor = '#E5E5EA'
                         e.target.style.boxShadow = 'none'
+                        e.target.style.transform = 'translateY(0)'
                       }}
                     >
                       <option value="">Selecciona un rango</option>
@@ -412,12 +424,14 @@ ${formData.name}
                     }}
                     placeholder="Describe tu proyecto, objetivos, funcionalidades que necesitas, plazos, etc."
                     onFocus={(e) => {
-                      e.target.style.borderColor = 'var(--primary-blue)'
-                      e.target.style.boxShadow = '0 0 0 3px rgba(0, 119, 255, 0.1)'
+                      e.target.style.borderColor = '#0071E3'
+                      e.target.style.boxShadow = '0 0 0 3px rgba(0, 113, 227, 0.1)'
+                      e.target.style.transform = 'translateY(-1px)'
                     }}
                     onBlur={(e) => {
-                      e.target.style.borderColor = 'var(--border-subtle)'
+                      e.target.style.borderColor = '#E5E5EA'
                       e.target.style.boxShadow = 'none'
+                      e.target.style.transform = 'translateY(0)'
                     }}
                   />
                 </div>
@@ -431,7 +445,7 @@ ${formData.name}
                   style={{
                     width: '100%',
                     padding: '1.25rem 2rem',
-                    background: isSubmitting ? 'var(--text-muted)' : 'var(--gradient-primary)',
+                    background: isSubmitting ? '#6E6E73' : '#0071E3',
                     color: 'white',
                     border: 'none',
                     borderRadius: '12px',
@@ -443,7 +457,7 @@ ${formData.name}
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '0.75rem',
-                    boxShadow: '0 10px 30px rgba(0, 119, 255, 0.3)'
+                    boxShadow: isSubmitting ? 'none' : '0 8px 20px rgba(0, 113, 227, 0.25)'
                   }}
                 >
                   <Send size={20} />

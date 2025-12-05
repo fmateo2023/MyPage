@@ -77,6 +77,17 @@ const Navigation = () => {
       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       fontFamily: 'Space Grotesk, sans-serif'
     }}>
+      {/* Progress Bar */}
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        height: '2px',
+        background: 'linear-gradient(90deg, #0077FF, #2BBEF8)',
+        width: `${Math.min(100, (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100)}%`,
+        transition: 'width 0.1s ease-out',
+        opacity: isScrolled ? 1 : 0
+      }} />
       <div style={{
         maxWidth: '1200px',
         margin: '0 auto',
@@ -151,7 +162,9 @@ const Navigation = () => {
                       transition: 'all 0.3s ease',
                       position: 'relative',
                       padding: '0.5rem 0',
-                      borderBottom: isActive ? '2px solid #0077FF' : 'none'
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.5rem'
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.color = isScrolled ? '#0077FF' : 'white'
@@ -164,6 +177,15 @@ const Navigation = () => {
                       e.target.style.transform = 'translateY(0)'
                     }}
                   >
+                    {isActive && (
+                      <div style={{
+                        width: '6px',
+                        height: '6px',
+                        borderRadius: '50%',
+                        background: 'linear-gradient(135deg, #0077FF, #2BBEF8)',
+                        boxShadow: '0 0 8px rgba(0, 119, 255, 0.5)'
+                      }} />
+                    )}
                     {item.label}
                   </Link>
                 )
@@ -321,7 +343,10 @@ const Navigation = () => {
                         textDecoration: 'none',
                         padding: '1rem 0',
                         borderBottom: index < navItems.length - 1 ? '1px solid rgba(232, 236, 240, 0.5)' : 'none',
-                        transition: 'all 0.3s ease'
+                        transition: 'all 0.3s ease',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.75rem'
                       }}
                       onMouseEnter={(e) => {
                         e.target.style.color = '#0077FF'
@@ -332,6 +357,15 @@ const Navigation = () => {
                         e.target.style.paddingLeft = '0'
                       }}
                     >
+                      {isActive && (
+                        <div style={{
+                          width: '8px',
+                          height: '8px',
+                          borderRadius: '50%',
+                          background: 'linear-gradient(135deg, #0077FF, #2BBEF8)',
+                          boxShadow: '0 0 10px rgba(0, 119, 255, 0.5)'
+                        }} />
+                      )}
                       {item.label}
                     </Link>
                   )

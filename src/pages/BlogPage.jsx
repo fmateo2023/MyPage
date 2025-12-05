@@ -75,7 +75,7 @@ const BlogPage = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
       style={{ 
-        background: 'var(--background-dark)',
+        background: 'linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 50%, #F5F5F7 100%)',
         minHeight: '100vh',
         paddingTop: '6rem'
       }}
@@ -90,13 +90,14 @@ const BlogPage = () => {
             style={{
               fontSize: 'clamp(2.5rem, 5vw, 4rem)',
               fontWeight: '700',
-              color: 'var(--text-primary)',
-              marginBottom: '1rem'
+              color: '#1D1D1F',
+              marginBottom: '1rem',
+              fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
             }}
           >
             Blog de{' '}
             <span style={{
-              background: 'var(--gradient-primary)',
+              background: 'linear-gradient(90deg, #0071E3, #2997FF)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
             }}>
@@ -109,7 +110,7 @@ const BlogPage = () => {
             transition={{ delay: 0.3 }}
             style={{
               fontSize: '1.25rem',
-              color: 'var(--text-secondary)',
+              color: '#6E6E73',
               maxWidth: '600px',
               margin: '0 auto'
             }}
@@ -140,17 +141,21 @@ const BlogPage = () => {
                 onClick={() => setSelectedCategory(category)}
                 style={{
                   padding: '0.75rem 1.5rem',
-                  borderRadius: '50px',
-                  border: 'none',
+                  borderRadius: '980px',
+                  border: selectedCategory === category ? 'none' : '1px solid #E5E5EA',
                   background: selectedCategory === category 
-                    ? 'var(--gradient-primary)' 
-                    : 'var(--background-card)',
+                    ? '#0071E3' 
+                    : 'rgba(255, 255, 255, 0.9)',
                   color: selectedCategory === category 
                     ? 'white' 
-                    : 'var(--text-secondary)',
+                    : '#6E6E73',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
-                  fontWeight: '500'
+                  fontWeight: '500',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: selectedCategory === category 
+                    ? '0 4px 12px rgba(0, 113, 227, 0.25)' 
+                    : '0 2px 8px rgba(0, 0, 0, 0.04)'
                 }}
               >
                 {category}
@@ -175,12 +180,14 @@ const BlogPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
                 style={{
-                  background: 'var(--background-card)',
-                  borderRadius: '1.5rem',
+                  background: 'rgba(255, 255, 255, 0.9)',
+                  backdropFilter: 'blur(20px)',
+                  borderRadius: '20px',
                   overflow: 'hidden',
-                  border: '1px solid var(--border-subtle)',
+                  border: '1px solid #E5E5EA',
                   transition: 'all 0.3s ease',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  boxShadow: '0 8px 20px rgba(0, 0, 0, 0.04)'
                 }}
                 whileHover={{ y: -8 }}
               >
@@ -197,7 +204,7 @@ const BlogPage = () => {
                       position: 'absolute',
                       top: '1rem',
                       left: '1rem',
-                      background: 'var(--gradient-primary)',
+                      background: '#0071E3',
                       color: 'white',
                       padding: '0.5rem 1rem',
                       borderRadius: '50px',
@@ -233,7 +240,7 @@ const BlogPage = () => {
                     gap: '1rem',
                     marginBottom: '1rem',
                     fontSize: '0.9rem',
-                    color: 'var(--text-muted)'
+                    color: '#6E6E73'
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <Calendar size={16} />
@@ -252,15 +259,16 @@ const BlogPage = () => {
                   <h3 style={{
                     fontSize: '1.5rem',
                     fontWeight: '600',
-                    color: 'var(--text-primary)',
+                    color: '#1D1D1F',
                     marginBottom: '1rem',
-                    lineHeight: '1.3'
+                    lineHeight: '1.3',
+                    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
                   }}>
                     {post.title}
                   </h3>
 
                   <p style={{
-                    color: 'var(--text-secondary)',
+                    color: '#3A3A3C',
                     lineHeight: '1.6',
                     marginBottom: '1.5rem'
                   }}>
@@ -271,7 +279,7 @@ const BlogPage = () => {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.5rem',
-                    color: 'var(--primary-blue)',
+                    color: '#0071E3',
                     fontWeight: '600',
                     fontSize: '0.9rem'
                   }}>
