@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { 
   Code, 
@@ -14,6 +14,17 @@ import {
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const quickLinks = [
     { name: 'Inicio', href: '/' },
@@ -56,12 +67,11 @@ const Footer = () => {
 
   return (
     <footer style={{
-      background: 'linear-gradient(135deg, #0A1628 0%, #1E293B 100%)',
-      color: 'var(--text-primary)',
+      background: 'linear-gradient(135deg, #1D1D1F 0%, #3A3A3C 100%)',
+      color: 'white',
       position: 'relative',
       overflow: 'hidden'
     }}>
-      {/* Background Pattern */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -76,14 +86,12 @@ const Footer = () => {
       }} />
 
       <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-        {/* Main Footer Content */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '3rem',
           padding: '4rem 0 2rem'
         }}>
-          {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -99,7 +107,7 @@ const Footer = () => {
               <div style={{
                 width: '50px',
                 height: '50px',
-                background: 'var(--gradient-primary)',
+                background: 'linear-gradient(90deg, #0071E3, #2997FF)',
                 borderRadius: '15px',
                 display: 'flex',
                 alignItems: 'center',
@@ -117,9 +125,9 @@ const Footer = () => {
                   Francisco Mateo
                 </h3>
                 <p style={{
-                  color: 'var(--accent-cyan)',
+                  color: '#0071E3',
                   fontSize: '0.9rem',
-                  fontFamily: 'var(--font-mono)'
+                  fontFamily: 'Inter, monospace'
                 }}>
                   Líder del área de TI
                 </p>
@@ -127,7 +135,7 @@ const Footer = () => {
             </div>
 
             <p style={{
-              color: 'var(--text-secondary)',
+              color: 'rgba(255, 255, 255, 0.8)',
               lineHeight: '1.6',
               marginBottom: '2rem'
             }}>
@@ -135,7 +143,6 @@ const Footer = () => {
               Especializado en desarrollo web full-stack y arquitecturas modernas.
             </p>
 
-            {/* Contact Info */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <a
                 href="mailto:tuz_fco@yahoo.com.mx"
@@ -143,17 +150,9 @@ const Footer = () => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.75rem',
-                  color: 'var(--text-secondary)',
+                  color: 'rgba(255, 255, 255, 0.8)',
                   textDecoration: 'none',
                   transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.color = 'var(--accent-cyan)'
-                  e.target.style.transform = 'translateX(5px)'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.color = 'var(--text-secondary)'
-                  e.target.style.transform = 'translateX(0)'
                 }}
               >
                 <Mail size={18} />
@@ -166,17 +165,9 @@ const Footer = () => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.75rem',
-                  color: 'var(--text-secondary)',
+                  color: 'rgba(255, 255, 255, 0.8)',
                   textDecoration: 'none',
                   transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.color = 'var(--accent-cyan)'
-                  e.target.style.transform = 'translateX(5px)'
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.color = 'var(--text-secondary)'
-                  e.target.style.transform = 'translateX(0)'
                 }}
               >
                 <Phone size={18} />
@@ -187,7 +178,7 @@ const Footer = () => {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.75rem',
-                color: 'var(--text-secondary)'
+                color: 'rgba(255, 255, 255, 0.8)'
               }}>
                 <MapPin size={18} />
                 Poza Rica, Veracruz, México
@@ -195,7 +186,6 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Quick Links */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -216,20 +206,12 @@ const Footer = () => {
                   key={index}
                   href={link.href}
                   style={{
-                    color: 'var(--text-secondary)',
+                    color: 'rgba(255, 255, 255, 0.8)',
                     textDecoration: 'none',
                     transition: 'all 0.3s ease',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.5rem'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.color = 'var(--accent-cyan)'
-                    e.target.style.transform = 'translateX(5px)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.color = 'var(--text-secondary)'
-                    e.target.style.transform = 'translateX(0)'
                   }}
                 >
                   <ArrowRight size={14} />
@@ -239,7 +221,6 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Services */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -259,7 +240,7 @@ const Footer = () => {
                 <div
                   key={index}
                   style={{
-                    color: 'var(--text-secondary)',
+                    color: 'rgba(255, 255, 255, 0.8)',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.5rem'
@@ -268,7 +249,7 @@ const Footer = () => {
                   <div style={{
                     width: '4px',
                     height: '4px',
-                    background: 'var(--accent-cyan)',
+                    background: '#0071E3',
                     borderRadius: '50%'
                   }} />
                   {service}
@@ -277,7 +258,6 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Newsletter & Social */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -294,7 +274,7 @@ const Footer = () => {
             </h4>
             
             <p style={{
-              color: 'var(--text-secondary)',
+              color: 'rgba(255, 255, 255, 0.8)',
               marginBottom: '2rem',
               lineHeight: '1.6'
             }}>
@@ -310,28 +290,20 @@ const Footer = () => {
                 alignItems: 'center',
                 gap: '0.75rem',
                 padding: '1rem 2rem',
-                background: 'var(--gradient-primary)',
+                background: '#0071E3',
                 color: 'white',
                 textDecoration: 'none',
                 borderRadius: '12px',
                 fontWeight: '600',
                 transition: 'all 0.3s ease',
-                marginBottom: '2rem'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.transform = 'translateY(-2px)'
-                e.target.style.boxShadow = '0 15px 35px rgba(0, 119, 255, 0.4)'
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = 'translateY(0)'
-                e.target.style.boxShadow = 'none'
+                marginBottom: '2rem',
+                boxShadow: '0 8px 20px rgba(0, 113, 227, 0.25)'
               }}
             >
               <MessageCircle size={20} />
               Iniciar Conversación
             </a>
 
-            {/* Social Links */}
             <div style={{
               display: 'flex',
               gap: '1rem'
@@ -353,22 +325,11 @@ const Footer = () => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: 'var(--text-secondary)',
+                      color: 'rgba(255, 255, 255, 0.8)',
                       textDecoration: 'none',
                       transition: 'all 0.3s ease',
-                      backdropFilter: 'blur(10px)'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.background = `rgba(${social.color === '#0077B5' ? '0, 119, 181' : social.color === '#25D366' ? '37, 211, 102' : '234, 67, 53'}, 0.2)`
-                      e.target.style.borderColor = social.color
-                      e.target.style.color = social.color
-                      e.target.style.transform = 'translateY(-3px)'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background = 'rgba(255, 255, 255, 0.1)'
-                      e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)'
-                      e.target.style.color = 'var(--text-secondary)'
-                      e.target.style.transform = 'translateY(0)'
+                      backdropFilter: 'blur(10px)',
+                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
                     }}
                   >
                     <IconComponent size={20} />
@@ -379,18 +340,17 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        {/* Bottom Bar */}
         <div style={{
           borderTop: '1px solid rgba(255, 255, 255, 0.1)',
           padding: '2rem 0',
           display: 'flex',
-          flexDirection: window.innerWidth < 768 ? 'column' : 'row',
+          flexDirection: isMobile ? 'column' : 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
           gap: '1rem'
         }}>
           <p style={{
-            color: 'var(--text-muted)',
+            color: 'rgba(255, 255, 255, 0.6)',
             fontSize: '0.9rem',
             display: 'flex',
             alignItems: 'center',
@@ -409,24 +369,20 @@ const Footer = () => {
             <a
               href="/privacy"
               style={{
-                color: 'var(--text-muted)',
+                color: 'rgba(255, 255, 255, 0.6)',
                 textDecoration: 'none',
                 transition: 'color 0.3s ease'
               }}
-              onMouseEnter={(e) => e.target.style.color = 'var(--accent-cyan)'}
-              onMouseLeave={(e) => e.target.style.color = 'var(--text-muted)'}
             >
               Privacidad
             </a>
             <a
               href="/terms"
               style={{
-                color: 'var(--text-muted)',
+                color: 'rgba(255, 255, 255, 0.6)',
                 textDecoration: 'none',
                 transition: 'color 0.3s ease'
               }}
-              onMouseEnter={(e) => e.target.style.color = 'var(--accent-cyan)'}
-              onMouseLeave={(e) => e.target.style.color = 'var(--text-muted)'}
             >
               Términos
             </a>

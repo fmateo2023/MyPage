@@ -1,34 +1,40 @@
-/* Parallax Hero Styles - Apple/Stripe Inspired */
+/* Parallax Hero Styles - Apple Premium Design */
 
 .hero {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
   padding-top: 80px;
-  background: linear-gradient(135deg, 
-    var(--color-gray-50) 0%, 
-    var(--color-white) 50%, 
-    var(--color-gray-50) 100%
+  background: linear-gradient(145deg, 
+    #f8f9fa 0%, 
+    #ffffff 50%, 
+    #f0f4f8 100%
   );
 }
 
-@media (prefers-color-scheme: dark) {
+@media (max-width: 767px) {
   .hero {
-    background: linear-gradient(135deg, 
-      var(--color-gray-900) 0%, 
-      var(--color-gray-800) 50%, 
-      var(--color-gray-900) 100%
-    );
+    padding-top: 100px;
+    padding-bottom: 40px;
   }
 }
+
+
 
 .background {
   position: absolute;
   inset: 0;
   overflow: hidden;
   z-index: 1;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(0, 170, 255, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(0, 102, 204, 0.03) 0%, transparent 50%),
+    linear-gradient(90deg, transparent 99%, rgba(0, 170, 255, 0.1) 100%),
+    linear-gradient(0deg, transparent 99%, rgba(0, 170, 255, 0.1) 100%);
+  background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+  opacity: 0.4;
 }
 
 .gradientOrb1 {
@@ -38,8 +44,8 @@
   width: 300px;
   height: 300px;
   background: radial-gradient(circle, 
-    rgba(0, 122, 255, 0.3) 0%, 
-    rgba(88, 86, 214, 0.2) 50%, 
+    rgba(0, 113, 227, 0.15) 0%, 
+    rgba(41, 151, 255, 0.1) 50%, 
     transparent 70%
   );
   border-radius: 50%;
@@ -53,8 +59,8 @@
   width: 400px;
   height: 400px;
   background: radial-gradient(circle, 
-    rgba(88, 86, 214, 0.3) 0%, 
-    rgba(48, 209, 88, 0.2) 50%, 
+    rgba(10, 132, 255, 0.15) 0%, 
+    rgba(0, 113, 227, 0.1) 50%, 
     transparent 70%
   );
   border-radius: 50%;
@@ -65,7 +71,7 @@
   position: absolute;
   width: 4px;
   height: 4px;
-  background: var(--color-primary);
+  background: #0071E3;
   border-radius: 50%;
   opacity: 0.6;
 }
@@ -73,30 +79,51 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  padding: 0 1rem;
   position: relative;
   z-index: 2;
   width: 100%;
 }
 
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+}
+
 @media (min-width: 768px) {
   .container {
-    padding: 0 var(--spacing-xl);
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 3rem;
   }
 }
 
 .content {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-3xl);
+  gap: 4rem;
   align-items: center;
   min-height: 80vh;
+}
+
+@media (max-width: 767px) {
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    min-height: auto;
+  }
 }
 
 @media (min-width: 1024px) {
   .content {
     grid-template-columns: 1fr 400px;
-    gap: var(--spacing-4xl);
+    gap: 5rem;
   }
 }
 
@@ -113,21 +140,21 @@
 .statusBadge {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  background: rgba(48, 209, 88, 0.1);
-  border: 1px solid rgba(48, 209, 88, 0.3);
-  border-radius: var(--radius-full);
-  padding: var(--spacing-sm) var(--spacing-lg);
-  margin-bottom: var(--spacing-xl);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-accent);
+  gap: 0.5rem;
+  background: #F5F5F7;
+  border: 1px solid #E5E5EA;
+  border-radius: 980px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 2rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1D1D1F;
 }
 
 .statusDot {
   width: 8px;
   height: 8px;
-  background: var(--color-accent);
+  background: #22C55E;
   border-radius: 50%;
   animation: pulse 2s ease-in-out infinite;
 }
@@ -139,15 +166,16 @@
 
 .heading {
   font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: var(--font-weight-bold);
+  font-weight: 700;
   line-height: 1.1;
-  margin-bottom: var(--spacing-lg);
-  color: var(--color-text-primary);
-  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  margin-bottom: 1.5rem;
+  color: #1D1D1F;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.02em;
 }
 
 .gradientText {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: linear-gradient(90deg, #0071E3, #2997FF);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -156,8 +184,8 @@
 .subtitle {
   font-size: clamp(1.125rem, 3vw, 1.5rem);
   line-height: 1.6;
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-xl);
+  color: #6E6E73;
+  margin-bottom: 2rem;
   max-width: 600px;
 }
 
@@ -178,9 +206,9 @@
 .benefits {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-md);
+  gap: 1rem;
   justify-content: center;
-  margin-bottom: var(--spacing-2xl);
+  margin-bottom: 3rem;
 }
 
 @media (min-width: 1024px) {
@@ -190,27 +218,21 @@
 }
 
 .benefitTag {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: var(--radius-full);
-  padding: var(--spacing-sm) var(--spacing-lg);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-text-primary);
+  background: #F5F5F7;
+  border: 1px solid #E5E5EA;
+  border-radius: 980px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1D1D1F;
 }
 
-@media (prefers-color-scheme: dark) {
-  .benefitTag {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-}
+
 
 .ctaButtons {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: 1rem;
   align-items: center;
 }
 
@@ -230,26 +252,46 @@
 .primaryButton {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #0066cc, #0099ff);
   color: white;
-  padding: var(--spacing-lg) var(--spacing-2xl);
-  border-radius: var(--radius-2xl);
+  padding: 0.875rem 1.75rem;
+  border-radius: 50px;
   text-decoration: none;
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-lg);
-  box-shadow: var(--shadow-lg);
-  transition: all var(--duration-normal) var(--ease-out);
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 102, 204, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
   min-width: 200px;
   justify-content: center;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
 }
 
 .primaryButton:hover {
-  box-shadow: var(--shadow-2xl);
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0, 102, 204, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.primaryButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.5s;
+}
+
+.primaryButton:hover::before {
+  left: 100%;
 }
 
 .arrowIcon {
-  transition: transform var(--duration-fast) var(--ease-out);
+  transition: transform 0.2s ease;
 }
 
 .primaryButton:hover .arrowIcon {
@@ -259,30 +301,26 @@
 .secondaryButton {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  color: var(--color-text-primary);
-  padding: var(--spacing-lg) var(--spacing-2xl);
-  border-radius: var(--radius-2xl);
+  gap: 0.5rem;
+  background: transparent;
+  color: #0071E3;
+  padding: 0.875rem 1.75rem;
+  border-radius: 980px;
   text-decoration: none;
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-lg);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  transition: all var(--duration-normal) var(--ease-out);
+  font-weight: 500;
+  font-size: 1rem;
+  border: 1px solid #E5E5EA;
+  transition: all 0.2s ease;
   min-width: 200px;
   justify-content: center;
+  letter-spacing: 0.01em;
 }
 
-@media (prefers-color-scheme: dark) {
-  .secondaryButton {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-}
+
 
 .secondaryButton:hover {
-  background: rgba(255, 255, 255, 0.9);
+  background: #F5F5F7;
+  transform: translateY(-1px);
 }
 
 .profileSection {
@@ -295,26 +333,21 @@
 .profileCard {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: var(--radius-2xl);
-  padding: var(--spacing-2xl);
+  border: 1px solid #E5E5EA;
+  border-radius: 20px;
+  padding: 2rem;
   text-align: center;
-  box-shadow: var(--shadow-2xl);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
   max-width: 300px;
 }
 
-@media (prefers-color-scheme: dark) {
-  .profileCard {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-}
+
 
 .profileImage {
   position: relative;
   width: 120px;
   height: 120px;
-  margin: 0 auto var(--spacing-lg);
+  margin: 0 auto 1.5rem;
 }
 
 .profileImage img {
@@ -325,33 +358,54 @@
   border: 3px solid rgba(255, 255, 255, 0.5);
 }
 
+@media (max-width: 767px) {
+  .profileImage {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1rem;
+  }
+  
+  .profileImage img {
+    max-width: 90%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+  }
+  
+  .profileCard {
+    max-width: 280px;
+    padding: 1.5rem;
+    margin: 0 16px;
+  }
+}
+
 .statusIndicator {
   position: absolute;
   bottom: 8px;
   right: 8px;
   width: 20px;
   height: 20px;
-  background: var(--color-accent);
+  background: #22C55E;
   border: 3px solid white;
   border-radius: 50%;
 }
 
 .profileInfo h3 {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-xs);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1D1D1F;
+  margin-bottom: 0.5rem;
 }
 
 .profileInfo p {
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-lg);
+  color: #6E6E73;
+  margin-bottom: 1.5rem;
 }
 
 .profileStats {
   display: flex;
   justify-content: space-around;
-  gap: var(--spacing-lg);
+  gap: 1.5rem;
 }
 
 .profileStats > div {
@@ -360,14 +414,14 @@
 
 .statNumber {
   display: block;
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0071E3;
 }
 
 .statLabel {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+  color: #6E6E73;
 }
 
 .floatingIcon {
@@ -376,21 +430,16 @@
   height: 60px;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: var(--radius-xl);
+  border: 1px solid #E5E5EA;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--font-size-2xl);
-  box-shadow: var(--shadow-lg);
+  font-size: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
 }
 
-@media (prefers-color-scheme: dark) {
-  .floatingIcon {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-  }
-}
+
 
 @media (max-width: 1023px) {
   .floatingIcon {
@@ -402,61 +451,81 @@
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-3xl);
+  gap: 1.5rem;
+  margin-top: 4rem;
 }
 
-.statCard {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: var(--radius-xl);
-  padding: var(--spacing-xl);
-  text-align: center;
-  transition: all var(--duration-normal) var(--ease-out);
-}
-
-@media (prefers-color-scheme: dark) {
-  .statCard {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+@media (max-width: 767px) {
+  .statsSection {
+    margin-top: 2rem;
+    display: block;
   }
 }
 
+.statCard {
+  background: linear-gradient(145deg, #ffffff, #f0f5ff);
+  border: 1px solid rgba(0, 102, 204, 0.2);
+  border-radius: 24px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 102, 204, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.statCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border-top: 2px solid rgba(0, 170, 255, 0.3);
+  border-right: 2px solid rgba(0, 170, 255, 0.3);
+  border-top-right-radius: 24px;
+}
+
+
+
 .statCard:hover {
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 102, 204, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .statIcon {
-  font-size: var(--font-size-3xl);
-  margin-bottom: var(--spacing-sm);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .statCard .statNumber {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-xs);
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #0055aa, #00aaff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
 }
 
 .statCard .statLabel {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
-  font-weight: var(--font-weight-medium);
+  font-size: 0.875rem;
+  color: #6E6E73;
+  font-weight: 500;
 }
 
 .scrollIndicator {
   position: absolute;
-  bottom: var(--spacing-xl);
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-sm);
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
+  gap: 0.5rem;
+  color: #6E6E73;
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 @media (max-width: 767px) {
@@ -468,7 +537,7 @@
 .scrollMouse {
   width: 24px;
   height: 40px;
-  border: 2px solid var(--color-text-secondary);
+  border: 2px solid #6E6E73;
   border-radius: 12px;
   position: relative;
   display: flex;
@@ -479,7 +548,7 @@
 .scrollWheel {
   width: 3px;
   height: 8px;
-  background: var(--color-text-secondary);
+  background: #6E6E73;
   border-radius: 2px;
 }
 
@@ -505,7 +574,7 @@
   .secondaryButton:hover,
   .statCard:hover {
     transform: none;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
   }
   
   .primaryButton:hover .arrowIcon {
