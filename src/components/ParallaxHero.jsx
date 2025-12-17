@@ -8,6 +8,8 @@ import styles from '../styles/ParallaxHero.module.css'
  * Hero section with parallax effects and animated particles
  * Implements Apple-style gradient animations and micro-interactions
  * Optimized for mobile performance with reduced motion support
+ * 
+ * 
  */
 const ParallaxHero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
