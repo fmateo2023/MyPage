@@ -35,6 +35,8 @@ const BlogArticle = ({ onBack }) => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+    
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 800)
     }
