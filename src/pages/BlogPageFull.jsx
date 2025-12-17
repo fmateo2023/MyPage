@@ -4,6 +4,7 @@ import AnimatedNavbar from '../components/AnimatedNavbar'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 import FloatingButtons from '../components/FloatingButtons'
+import BlogArticle from '../components/BlogArticle'
 import { 
   Calendar, 
   Clock, 
@@ -12,11 +13,28 @@ import {
   BookOpen,
   Code,
   Lightbulb,
-  Zap
+  Zap,
+  MapPin,
+  Hotel
 } from 'lucide-react'
 
 const BlogPage = () => {
+  const [selectedArticle, setSelectedArticle] = React.useState(null)
+  const [selectedCategory, setSelectedCategory] = React.useState("Todos")
+
   const blogPosts = [
+    {
+      id: 'papantla-hoteles',
+      title: "Cómo Aumentar las Reservas en Papantla y la Región Gracias a una Buena Presencia Digital",
+      excerpt: "Descubre por qué muchos hoteles en Papantla pierden clientes y cómo una presencia digital básica puede aumentar tus reservaciones sin gastar una fortuna.",
+      date: "2024-01-15",
+      readTime: "8 min",
+      category: "Marketing Digital Local",
+      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop&crop=center",
+      tags: ["Papantla", "Hotelería", "SEO Local", "Turismo", "Veracruz"],
+      featured: true,
+      location: "Papantla, Veracruz"
+    },
     {
       id: 1,
       title: "El Futuro de la Inteligencia Artificial en el Desarrollo Web",
@@ -79,12 +97,15 @@ const BlogPage = () => {
     }
   ]
 
-  const categories = ["Todos", "Inteligencia Artificial", "Desarrollo Backend", "Frontend", "Automatización", "Performance", "Tendencias"]
-  const [selectedCategory, setSelectedCategory] = React.useState("Todos")
+  const categories = ["Todos", "Marketing Digital Local", "Inteligencia Artificial", "Desarrollo Backend", "Frontend", "Automatización", "Performance", "Tendencias"]
 
   const filteredPosts = selectedCategory === "Todos" 
     ? blogPosts 
     : blogPosts.filter(post => post.category === selectedCategory)
+
+  if (selectedArticle === 'papantla-hoteles') {
+    return <BlogArticle onBack={() => setSelectedArticle(null)} />
+  }
 
   return (
     <div style={{
@@ -229,6 +250,195 @@ const BlogPage = () => {
           ))}
         </motion.div>
 
+        {/* Featured Article */}
+        {filteredPosts.find(post => post.featured) && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            style={{ marginBottom: '3rem' }}
+          >
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              background: 'linear-gradient(135deg, #0077FF 0%, #2BBEF8 100%)',
+              color: 'white',
+              padding: '0.5rem 1rem',
+              borderRadius: '50px',
+              fontSize: '0.8rem',
+              fontWeight: '600',
+              marginBottom: '1.5rem',
+              boxShadow: '0 4px 12px rgba(0, 119, 255, 0.3)'
+            }}>
+              <Hotel size={14} />
+              ARTÍCULO DESTACADO
+            </div>
+            
+            {(() => {
+              const featuredPost = filteredPosts.find(post => post.featured)
+              return (
+                <motion.article
+                  whileHover={{ y: -8 }}
+                  onClick={() => setSelectedArticle(featuredPost.id)}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.95)',
+                    backdropFilter: 'blur(20px)',
+                    borderRadius: '24px',
+                    overflow: 'hidden',
+                    border: '2px solid rgba(0, 119, 255, 0.2)',
+                    boxShadow: '0 20px 40px rgba(0, 119, 255, 0.15)',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer',
+                    display: 'grid',
+                    gridTemplateColumns: window.innerWidth >= 768 ? '1fr 1fr' : '1fr',
+                    gap: 0
+                  }}
+                >
+                  {/* Image */}
+                  <div style={{
+                    position: 'relative',
+                    height: window.innerWidth >= 768 ? 'auto' : '250px',
+                    minHeight: window.innerWidth >= 768 ? '300px' : 'auto',
+                    overflow: 'hidden'
+                  }}>
+                    <img 
+                      src={featuredPost.image}
+                      alt={featuredPost.title}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                        transition: 'transform 0.3s ease'
+                      }}
+                    />
+                    <div style={{
+                      position: 'absolute',
+                      top: '1.5rem',
+                      left: '1.5rem',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '0.5rem'
+                    }}>
+                      <div style={{
+                        padding: '0.5rem 1rem',
+                        background: 'linear-gradient(135deg, #0077FF, #2BBEF8)',
+                        boxShadow: '0 4px 12px rgba(0, 119, 255, 0.4)',
+                        color: 'white',
+                        fontSize: '0.8rem',
+                        fontWeight: '600',
+                        borderRadius: '50px'
+                      }}>
+                        {featuredPost.category}
+                      </div>
+                      <div style={{
+                        padding: '0.5rem 1rem',
+                        background: 'rgba(0, 0, 0, 0.7)',
+                        backdropFilter: 'blur(10px)',
+                        color: 'white',
+                        fontSize: '0.75rem',
+                        fontWeight: '500',
+                        borderRadius: '50px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.25rem'
+                      }}>
+                        <MapPin size={12} />
+                        {featuredPost.location}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div style={{ padding: '2.5rem' }}>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '1rem',
+                      marginBottom: '1.5rem',
+                      fontSize: '0.85rem',
+                      color: '#6E6E73'
+                    }}>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                        <Calendar size={14} />
+                        {new Date(featuredPost.date).toLocaleDateString('es-ES', { 
+                          year: 'numeric', 
+                          month: 'long', 
+                          day: 'numeric' 
+                        })}
+                      </span>
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                        <Clock size={14} />
+                        {featuredPost.readTime}
+                      </span>
+                    </div>
+
+                    <h3 style={{
+                      fontSize: 'clamp(1.25rem, 3vw, 1.75rem)',
+                      fontWeight: '700',
+                      color: '#1D1D1F',
+                      marginBottom: '1.5rem',
+                      lineHeight: '1.3'
+                    }}>
+                      {featuredPost.title}
+                    </h3>
+
+                    <p style={{
+                      color: '#3A3A3C',
+                      lineHeight: '1.7',
+                      marginBottom: '2rem',
+                      fontSize: '1.1rem'
+                    }}>
+                      {featuredPost.excerpt}
+                    </p>
+
+                    {/* Tags */}
+                    <div style={{
+                      display: 'flex',
+                      flexWrap: 'wrap',
+                      gap: '0.5rem',
+                      marginBottom: '2rem'
+                    }}>
+                      {featuredPost.tags.map((tag, tagIndex) => (
+                        <span
+                          key={tagIndex}
+                          style={{
+                            padding: '0.5rem 1rem',
+                            background: 'rgba(0, 119, 255, 0.1)',
+                            color: '#0077FF',
+                            borderRadius: '50px',
+                            fontSize: '0.8rem',
+                            fontWeight: '600',
+                            border: '1px solid rgba(0, 119, 255, 0.2)'
+                          }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Read More */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.75rem',
+                      color: '#0077FF',
+                      fontSize: '1rem',
+                      fontWeight: '600',
+                      cursor: 'pointer'
+                    }}>
+                      <span>Leer artículo completo</span>
+                      <ArrowRight size={18} />
+                    </div>
+                  </div>
+                </motion.article>
+              )
+            })()}
+          </motion.div>
+        )}
+
         {/* Blog Posts Grid */}
         <div style={{
           display: 'grid',
@@ -236,7 +446,7 @@ const BlogPage = () => {
           gap: '1.5rem',
           marginBottom: '4rem'
         }}>
-          {filteredPosts.map((post, index) => (
+          {filteredPosts.filter(post => !post.featured).map((post, index) => (
             <motion.article
               key={post.id}
               initial={{ opacity: 0, y: 30 }}
