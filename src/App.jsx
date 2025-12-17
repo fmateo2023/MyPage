@@ -94,7 +94,7 @@ function App() {
       const hash = window.location.hash.replace('#', '')
       if (hash === 'experience') setCurrentPage('experience')
       else if (hash === 'projects') setCurrentPage('projects')
-      else if (hash === 'blog') setCurrentPage('blog')
+      else if (hash === 'blog' || hash === 'articulo-hoteles-papantla') setCurrentPage('blog')
       else setCurrentPage('home')
       
       // Scroll to top when page changes

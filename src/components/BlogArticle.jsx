@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import AnimatedNavbar from './AnimatedNavbar'
 import { 
   ArrowLeft, 
   Calendar, 
@@ -14,11 +15,19 @@ import {
   Users,
   Star,
   Smartphone,
-  ChevronUp
+  ChevronUp,
+  Share2,
+  Mail,
+  Facebook,
+  Share,
+  Linkedin,
+  Copy,
+  Check
 } from 'lucide-react'
 
 const BlogArticle = ({ onBack }) => {
   const [showScrollTop, setShowScrollTop] = useState(false)
+  const [copied, setCopied] = useState(false)
 
   const scrollToContact = () => {
     onBack()
@@ -34,6 +43,40 @@ const BlogArticle = ({ onBack }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  const shareUrl = window.location.origin + window.location.pathname
+  const shareTitle = 'Cómo Aumentar las Reservas en Papantla y la Región Gracias a una Buena Presencia Digital'
+  const shareText = 'Descubre cómo mejorar la presencia digital de tu hotel o negocio en Papantla y atraer más clientes'
+
+  const shareOnFacebook = () => {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank')
+  }
+
+  const shareOnTwitter = () => {
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`, '_blank')
+  }
+
+  const shareOnLinkedIn = () => {
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, '_blank')
+  }
+
+  const shareByEmail = () => {
+    window.open(`mailto:?subject=${encodeURIComponent(shareTitle)}&body=${encodeURIComponent(shareText + ' ' + shareUrl)}`, '_blank')
+  }
+
+  const shareOnWhatsApp = () => {
+    window.open(`https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`, '_blank')
+  }
+
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl + '#articulo-hoteles-papantla')
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Error copying link:', err)
+    }
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0)
     
@@ -46,16 +89,19 @@ const BlogArticle = ({ onBack }) => {
   }, [])
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      style={{
-        background: 'linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 50%, #F5F5F7 100%)',
-        minHeight: '100vh',
-        paddingTop: '120px'
-      }}
-    >
+    <>
+      <AnimatedNavbar />
+      <motion.div
+        id="articulo-hoteles-papantla"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        style={{
+          background: 'linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 50%, #F5F5F7 100%)',
+          minHeight: '100vh',
+          paddingTop: '120px'
+        }}
+      >
       <div style={{ 
         maxWidth: '800px', 
         margin: '0 auto', 
@@ -66,7 +112,10 @@ const BlogArticle = ({ onBack }) => {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          onClick={onBack}
+          onClick={() => {
+            window.location.hash = '#blog'
+            onBack()
+          }}
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -168,6 +217,132 @@ const BlogArticle = ({ onBack }) => {
             <br /><br />
             Déjame contarte algo: muchas veces <strong>sí hay clientes</strong>, pero <strong>no te están encontrando</strong>.
           </p>
+
+          {/* Share Section */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '1rem',
+            marginTop: '2rem',
+            padding: 'clamp(1rem, 3vw, 1.5rem)',
+            background: 'rgba(255, 255, 255, 0.8)',
+            borderRadius: '12px',
+            border: '1px solid #E5E5EA'
+          }}>
+            <span style={{
+              fontSize: 'clamp(0.9rem, 2.5vw, 1rem)',
+              fontWeight: '600',
+              color: '#6E6E73',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}>
+              <Share2 size={18} />
+              Compartir:
+            </span>
+            <div style={{
+              display: 'flex',
+              gap: '0.75rem',
+              flexWrap: 'wrap'
+            }}>
+              <button
+                onClick={shareOnFacebook}
+                style={{
+                  background: '#1877F2',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  padding: '0.5rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
+                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              >
+                <Facebook size={16} />
+              </button>
+              <button
+                onClick={shareOnLinkedIn}
+                style={{
+                  background: '#0A66C2',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  padding: '0.5rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
+                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              >
+                <Linkedin size={16} />
+              </button>
+              <button
+                onClick={shareOnWhatsApp}
+                style={{
+                  background: '#25D366',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  padding: '0.5rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
+                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              >
+                <Share size={16} />
+              </button>
+              <button
+                onClick={shareByEmail}
+                style={{
+                  background: '#6B7280',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  padding: '0.5rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
+                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              >
+                <Mail size={16} />
+              </button>
+              <button
+                onClick={copyLink}
+                style={{
+                  background: copied ? '#10B981' : '#374151',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  padding: '0.5rem',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
+                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              >
+                {copied ? <Check size={16} /> : <Copy size={16} />}
+              </button>
+            </div>
+          </div>
         </motion.header>
 
         {/* Hero Image */}
@@ -1041,7 +1216,8 @@ const BlogArticle = ({ onBack }) => {
           <ChevronUp size={24} />
         </motion.button>
       )}
-    </motion.div>
+      </motion.div>
+    </>
   )
 }
 

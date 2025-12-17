@@ -22,6 +22,12 @@ const BlogPage = () => {
   const [selectedArticle, setSelectedArticle] = React.useState(null)
   const [selectedCategory, setSelectedCategory] = React.useState("Todos")
 
+  React.useEffect(() => {
+    if (window.location.hash === '#articulo-hoteles-papantla') {
+      setSelectedArticle('papantla-hoteles')
+    }
+  }, [])
+
   const blogPosts = [
     {
       id: 'papantla-hoteles',
