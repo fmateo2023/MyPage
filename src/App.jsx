@@ -1,5 +1,6 @@
 import React, { Suspense, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { Analytics } from '@vercel/analytics/react'
 import AnimatedNavbar from './components/AnimatedNavbar'
 import ParallaxHero from './components/ParallaxHero'
 import FloatingButtons from './components/FloatingButtons'
@@ -108,15 +109,30 @@ function App() {
   }, [])
 
   if (currentPage === 'experience') {
-    return <ExperiencePageFull />
+    return (
+      <>
+        <ExperiencePageFull />
+        <Analytics />
+      </>
+    )
   }
 
   if (currentPage === 'projects') {
-    return <PortfolioPageFull />
+    return (
+      <>
+        <PortfolioPageFull />
+        <Analytics />
+      </>
+    )
   }
 
   if (currentPage === 'blog') {
-    return <BlogPageFull />
+    return (
+      <>
+        <BlogPageFull />
+        <Analytics />
+      </>
+    )
   }
 
   return (
@@ -159,6 +175,7 @@ function App() {
       </ErrorBoundary>
       
       <FloatingButtons />
+      <Analytics />
     </motion.div>
   )
 }
