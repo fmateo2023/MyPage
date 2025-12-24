@@ -1,6 +1,7 @@
 import React, { Suspense, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import AnimatedNavbar from './components/AnimatedNavbar'
 import ParallaxHero from './components/ParallaxHero'
 import FloatingButtons from './components/FloatingButtons'
@@ -113,6 +114,7 @@ function App() {
       <>
         <ExperiencePageFull />
         <Analytics />
+        <SpeedInsights />
       </>
     )
   }
@@ -122,6 +124,7 @@ function App() {
       <>
         <PortfolioPageFull />
         <Analytics />
+        <SpeedInsights />
       </>
     )
   }
@@ -131,6 +134,7 @@ function App() {
       <>
         <BlogPageFull />
         <Analytics />
+        <SpeedInsights />
       </>
     )
   }
@@ -176,6 +180,7 @@ function App() {
       
       <FloatingButtons />
       <Analytics />
+      <SpeedInsights />
     </motion.div>
   )
 }
