@@ -180,7 +180,7 @@ const BlogArticleComercio = ({ onBack }) => {
             marginBottom: '0.75rem',
             fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif'
           }}>
-            ¿Dueño de negocio o esclavo del WhatsApp? Por qué el Norte de Veracruz está dejando de vender 'al ahí se va
+            ¿Dueño de negocio o esclavo del WhatsApp? Por qué el Norte de Veracruz está dejando de vender 'al ahí se va'
           </h1>
 
           <div style={{
