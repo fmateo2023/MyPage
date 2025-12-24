@@ -5,6 +5,7 @@ import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 import FloatingButtons from '../components/FloatingButtons'
 import BlogArticle from '../components/BlogArticle'
+import BlogArticleComercio from '../components/BlogArticleComercio'
 import { 
   Calendar, 
   Clock, 
@@ -15,7 +16,8 @@ import {
   Lightbulb,
   Zap,
   MapPin,
-  Hotel
+  Hotel,
+  ShoppingCart
 } from 'lucide-react'
 
 const BlogPage = () => {
@@ -23,12 +25,39 @@ const BlogPage = () => {
   const [selectedCategory, setSelectedCategory] = React.useState("Todos")
 
   React.useEffect(() => {
-    if (window.location.hash === '#articulo-hoteles-papantla') {
-      setSelectedArticle('papantla-hoteles')
+    const checkHash = () => {
+      const hash = window.location.hash
+      if (hash === '#articulo-hoteles-papantla') {
+        setSelectedArticle('papantla-hoteles')
+      } else if (hash === '#articulo-nuevo-comercio') {
+        setSelectedArticle('nuevo-comercio')
+      }
+    }
+    
+    // Check immediately
+    checkHash()
+    
+    // Listen for hash changes
+    window.addEventListener('hashchange', checkHash)
+    
+    return () => {
+      window.removeEventListener('hashchange', checkHash)
     }
   }, [])
 
   const blogPosts = [
+    {
+      id: 'nuevo-comercio',
+      title: "El Nuevo Comercio en el Norte de Veracruz: ¿Tu negocio es profesional o solo 'atiendes por mensaje'?",
+      excerpt: "Descubre por qué tu negocio necesita dar el salto de WhatsApp a un sistema profesional. Casos reales de Don Beto y la taquería que pierden clientes sin saberlo.",
+      date: "2024-01-18",
+      readTime: "9 min",
+      category: "Transformación Digital Comercial",
+      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop&crop=center",
+      tags: ["Poza Rica", "Tuxpan", "Comercio Digital", "PyMEs", "Veracruz"],
+      featured: true,
+      location: "Poza Rica, Tuxpan, Papantla"
+    },
     {
       id: 'papantla-hoteles',
       title: "Cómo Aumentar las Reservas en Papantla y la Región Gracias a una Buena Presencia Digital",
@@ -38,7 +67,7 @@ const BlogPage = () => {
       category: "Marketing Digital Local",
       image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=400&fit=crop&crop=center",
       tags: ["Papantla", "Hotelería", "SEO Local", "Turismo", "Veracruz"],
-      featured: true,
+      featured: false,
       location: "Papantla, Veracruz"
     },
     {
@@ -103,7 +132,7 @@ const BlogPage = () => {
     }
   ]
 
-  const categories = ["Todos", "Marketing Digital Local", "Inteligencia Artificial", "Desarrollo Backend", "Frontend", "Automatización", "Performance", "Tendencias"]
+  const categories = ["Todos", "Transformación Digital Comercial", "Marketing Digital Local", "Inteligencia Artificial", "Desarrollo Backend", "Frontend", "Automatización", "Performance", "Tendencias"]
 
   const filteredPosts = selectedCategory === "Todos" 
     ? blogPosts 
@@ -111,6 +140,10 @@ const BlogPage = () => {
 
   if (selectedArticle === 'papantla-hoteles') {
     return <BlogArticle onBack={() => setSelectedArticle(null)} />
+  }
+
+  if (selectedArticle === 'nuevo-comercio') {
+    return <BlogArticleComercio onBack={() => setSelectedArticle(null)} />
   }
 
   return (
@@ -257,35 +290,33 @@ const BlogPage = () => {
         </motion.div>
 
         {/* Featured Article */}
-        {filteredPosts.find(post => post.featured) && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-            style={{ marginBottom: '3rem' }}
-          >
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              background: 'linear-gradient(135deg, #0077FF 0%, #2BBEF8 100%)',
-              color: 'white',
-              padding: '0.5rem 1rem',
-              borderRadius: '50px',
-              fontSize: '0.8rem',
-              fontWeight: '600',
-              marginBottom: '1.5rem',
-              boxShadow: '0 4px 12px rgba(0, 119, 255, 0.3)'
-            }}>
-              <Hotel size={14} />
-              ARTÍCULO DESTACADO
-            </div>
-            
-            {(() => {
-              const featuredPost = filteredPosts.find(post => post.featured)
-              return (
-                <motion.article
+        {(() => {
+          const featuredPost = filteredPosts.find(post => post.featured)
+          return featuredPost && (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              style={{ marginBottom: '3rem' }}
+            >
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                background: 'linear-gradient(135deg, #0077FF 0%, #2BBEF8 100%)',
+                color: 'white',
+                padding: '0.5rem 1rem',
+                borderRadius: '50px',
+                fontSize: '0.8rem',
+                fontWeight: '600',
+                marginBottom: '1.5rem',
+                boxShadow: '0 4px 12px rgba(0, 119, 255, 0.3)'
+              }}>
+                {featuredPost.id === 'nuevo-comercio' ? <ShoppingCart size={14} /> : <Hotel size={14} />}
+                ARTÍCULO DESTACADO
+              </div>
+              <motion.article
                   whileHover={{ y: -8 }}
                   onClick={() => setSelectedArticle(featuredPost.id)}
                   style={{
@@ -440,10 +471,9 @@ const BlogPage = () => {
                     </div>
                   </div>
                 </motion.article>
-              )
-            })()}
-          </motion.div>
-        )}
+            </motion.div>
+          )
+        })()}
 
         {/* Blog Posts Grid */}
         <div style={{
@@ -460,6 +490,7 @@ const BlogPage = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -8 }}
+              onClick={() => setSelectedArticle(post.id)}
               style={{
                 background: 'rgba(255, 255, 255, 0.9)',
                 backdropFilter: 'blur(20px)',
